@@ -2,12 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown } from "lucide-react";
 
 import { ProjectCard, type Project } from "@/components/project-card";
-import buildingImage from "@/assets/building-showcase.jpg";
 import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
-import cliffImage from "@/assets/project-cliff.jpg";
-import urbanImage from "@/assets/project-urban.jpg";
-import pavilionImage from "@/assets/project-pavilion.jpg";
-import museumImage from "@/assets/project-museum.jpg";
+import fondoAsset from "@/assets/fondo.jpg.asset.json";
+import proyecto5Asset from "@/assets/proyecto-5.jpg.asset.json";
+import proyecto4Asset from "@/assets/proyecto-4.jpg.asset.json";
+import proyecto3Asset from "@/assets/proyecto-3.jpg.asset.json";
+import proyecto1Asset from "@/assets/proyecto-1.jpg.asset.json";
+
+const buildingImage = fondoAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
