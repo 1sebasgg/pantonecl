@@ -3,6 +3,7 @@ import { ArrowDown } from "lucide-react";
 
 import { ProjectCard, type Project } from "@/components/project-card";
 import buildingImage from "@/assets/building-showcase.jpg";
+import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
 import cliffImage from "@/assets/project-cliff.jpg";
 import urbanImage from "@/assets/project-urban.jpg";
 import pavilionImage from "@/assets/project-pavilion.jpg";
