@@ -1,117 +1,150 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CalendarClock, Layers, MapPin, Ruler, Wallet } from "lucide-react";
+import { ArrowUpRight, Compass, MapPin, Ruler, Layers, Trees, Sun } from "lucide-react";
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { AppSidebar } from "@/components/app-sidebar";
-import { StatCard } from "@/components/dashboard/stat-card";
-import { PhaseTimeline } from "@/components/dashboard/phase-timeline";
-import { TeamList } from "@/components/dashboard/team-list";
-import { ActivityFeed } from "@/components/dashboard/activity-feed";
-import heroImage from "@/assets/project-hero.jpg";
+import buildingImage from "@/assets/building-showcase.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Atelier — Dashboard de proyecto de arquitectura" },
+      { title: "Casa Mirador — Ficha del proyecto de arquitectura" },
       {
         name: "description",
         content:
-          "Panel para gestionar un proyecto de arquitectura moderno: fases, cronograma, equipo y presupuesto en un solo lugar.",
+          "Ficha visual de Casa Mirador: arquitecto, ubicación, superficie, materiales y detalles de este proyecto de arquitectura moderno.",
       },
-      { property: "og:title", content: "Atelier — Dashboard de proyecto de arquitectura" },
+      { property: "og:title", content: "Casa Mirador — Ficha del proyecto" },
       {
         property: "og:description",
-        content: "Gestiona fases, equipo y presupuesto de tu proyecto de arquitectura moderno.",
+        content: "Una vista editorial del proyecto Casa Mirador: arquitecto, materiales y detalles.",
       },
+      { property: "og:image", content: buildingImage },
+      { name: "twitter:image", content: buildingImage },
     ],
   }),
-  component: Dashboard,
+  component: Showcase,
 });
 
-function Dashboard() {
+interface DetailItem {
+  icon: typeof Ruler;
+  label: string;
+  value: string;
+}
+
+const leftDetails: DetailItem[] = [
+  { icon: Compass, label: "Arquitecto", value: "Marta Rivas" },
+  { icon: MapPin, label: "Ubicación", value: "Valle de Bravo, MX" },
+  { icon: Layers, label: "Tipología", value: "Vivienda unifamiliar" },
+];
+
+const rightDetails: DetailItem[] = [
+  { icon: Ruler, label: "Superficie", value: "420 m²" },
+  { icon: Sun, label: "Año", value: "2027" },
+  { icon: Trees, label: "Entorno", value: "Bosque templado" },
+];
+
+const materials = ["Hormigón visto", "Cristal templado", "Madera de roble", "Acero negro"];
+
+function DetailCard({ icon: Icon, label, value }: DetailItem) {
   return (
-    <SidebarProvider>
-      <div className="flex min-h-screen w-full bg-background">
-        <AppSidebar />
-
-        <div className="flex flex-1 flex-col">
-          <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-background/80 px-4 backdrop-blur-md">
-            <SidebarTrigger />
-            <div className="flex flex-1 items-center justify-between">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">Casa Mirador</span>
-                <span>/</span>
-                <span>Resumen</span>
-              </div>
-              <Button size="sm" variant="default">
-                Nueva tarea
-              </Button>
-            </div>
-          </header>
-
-          <main className="flex-1 space-y-6 p-4 md:p-6">
-            {/* Hero */}
-            <section className="relative overflow-hidden rounded-xl">
-              <img
-                src={heroImage}
-                alt="Render del proyecto de arquitectura Casa Mirador"
-                width={1600}
-                height={900}
-                className="h-56 w-full object-cover md:h-72"
-              />
-              <div
-                className="absolute inset-0"
-                style={{ background: "var(--gradient-hero)" }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 flex flex-wrap items-end justify-between gap-4 p-6">
-                <div className="text-primary-foreground">
-                  <Badge className="mb-3 border-0 bg-accent text-accent-foreground">
-                    En ejecución
-                  </Badge>
-                  <h1 className="font-display text-3xl font-semibold md:text-4xl">
-                    Casa Mirador
-                  </h1>
-                  <p className="mt-1 flex items-center gap-1.5 text-sm opacity-90">
-                    <MapPin className="h-4 w-4" />
-                    Valle de Bravo, México · Vivienda unifamiliar
-                  </p>
-                </div>
-                <div className="flex gap-6 text-primary-foreground">
-                  <div>
-                    <p className="text-xs opacity-80">Superficie</p>
-                    <p className="font-display text-xl font-semibold">420 m²</p>
-                  </div>
-                  <div>
-                    <p className="text-xs opacity-80">Entrega</p>
-                    <p className="font-display text-xl font-semibold">Mar 2027</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Stats */}
-            <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <StatCard label="Avance global" value="58%" delta="+6%" icon={Layers} />
-              <StatCard label="Presupuesto usado" value="$4.2M" delta="vs $7.2M" icon={Wallet} />
-              <StatCard label="Días restantes" value="284" icon={CalendarClock} />
-              <StatCard label="Planos emitidos" value="142" delta="+12" icon={Ruler} />
-            </section>
-
-            {/* Main grid */}
-            <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-              <div className="lg:col-span-2">
-                <PhaseTimeline />
-              </div>
-              <div className="space-y-6">
-                <TeamList />
-                <ActivityFeed />
-              </div>
-            </section>
-          </main>
-        </div>
+    <div className="group flex items-start gap-4 border-b border-border/60 pb-5">
+      <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-accent transition-colors group-hover:border-accent">
+        <Icon className="h-4 w-4" />
       </div>
-    </SidebarProvider>
+      <div>
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
+        <p className="mt-1 font-display text-lg font-medium leading-tight">{value}</p>
+      </div>
+    </div>
+  );
+}
+
+function Showcase() {
+  return (
+    <main className="min-h-screen bg-background">
+      <div className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-16">
+        {/* Header */}
+        <header className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-8">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-accent">Atelier · Proyecto 014</p>
+            <h1 className="mt-3 font-display text-5xl font-semibold tracking-tight md:text-7xl">
+              Casa Mirador
+            </h1>
+          </div>
+          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+            Una residencia de hormigón y cristal que enmarca el paisaje del valle desde cada estancia.
+          </p>
+        </header>
+
+        {/* Showcase: info | photo | info */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.5fr_1fr] lg:gap-10">
+          {/* Left info */}
+          <aside className="order-2 flex flex-col justify-center gap-5 lg:order-1">
+            {leftDetails.map((d) => (
+              <DetailCard key={d.label} {...d} />
+            ))}
+          </aside>
+
+          {/* Center photo */}
+          <figure className="order-1 lg:order-2">
+            <div className="relative overflow-hidden rounded-2xl shadow-[var(--shadow-soft)]">
+              <img
+                src={buildingImage}
+                alt="Render del edificio Casa Mirador en hormigón y cristal rodeado de vegetación"
+                width={1024}
+                height={1280}
+                className="aspect-[4/5] w-full object-cover"
+              />
+              <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
+                En ejecución
+              </span>
+            </div>
+            <figcaption className="mt-4 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              Fachada sur · Acceso principal
+            </figcaption>
+          </figure>
+
+          {/* Right info */}
+          <aside className="order-3 flex flex-col justify-center gap-5">
+            {rightDetails.map((d) => (
+              <DetailCard key={d.label} {...d} />
+            ))}
+          </aside>
+        </div>
+
+        {/* Lower band: description + materials */}
+        <section className="mt-16 grid grid-cols-1 gap-10 border-t border-border pt-12 md:grid-cols-2">
+          <div>
+            <h2 className="font-display text-2xl font-semibold">El concepto</h2>
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              Casa Mirador se asienta sobre una plataforma de hormigón que se abre hacia el bosque.
+              Los grandes paños de cristal disuelven el límite entre interior y exterior, mientras la
+              cubierta plana proyecta sombra y protege las estancias del sol directo. La paleta de
+              materiales nobles envejece con el tiempo, integrándose en el paisaje.
+            </p>
+            <a
+              href="#"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-opacity hover:opacity-70"
+            >
+              Ver memoria completa
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+
+          <div>
+            <h2 className="font-display text-2xl font-semibold">Materiales</h2>
+            <ul className="mt-4 flex flex-wrap gap-3">
+              {materials.map((m) => (
+                <li
+                  key={m}
+                  className="rounded-full border border-border bg-secondary px-4 py-2 text-sm text-secondary-foreground"
+                >
+                  {m}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
