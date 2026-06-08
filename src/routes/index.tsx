@@ -1,150 +1,175 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Compass, MapPin, Ruler, Layers, Trees, Sun } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
+import { ProjectCard, type Project } from "@/components/project-card";
 import buildingImage from "@/assets/building-showcase.jpg";
+import cliffImage from "@/assets/project-cliff.jpg";
+import urbanImage from "@/assets/project-urban.jpg";
+import pavilionImage from "@/assets/project-pavilion.jpg";
+import museumImage from "@/assets/project-museum.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Casa Mirador — Ficha del proyecto de arquitectura" },
+      { title: "Atelier — Portafolio de arquitectura moderna" },
       {
         name: "description",
         content:
-          "Ficha visual de Casa Mirador: arquitecto, ubicación, superficie, materiales y detalles de este proyecto de arquitectura moderno.",
+          "Portafolio visual de proyectos de arquitectura moderna: casas, edificios, pabellones y museos con sus arquitectos y detalles.",
       },
-      { property: "og:title", content: "Casa Mirador — Ficha del proyecto" },
+      { property: "og:title", content: "Atelier — Portafolio de arquitectura" },
       {
         property: "og:description",
-        content: "Una vista editorial del proyecto Casa Mirador: arquitecto, materiales y detalles.",
+        content: "Una colección visual de proyectos de arquitectura moderna y sus detalles.",
       },
       { property: "og:image", content: buildingImage },
       { name: "twitter:image", content: buildingImage },
     ],
   }),
-  component: Showcase,
+  component: Portfolio,
 });
 
-interface DetailItem {
-  icon: typeof Ruler;
-  label: string;
-  value: string;
-}
-
-const leftDetails: DetailItem[] = [
-  { icon: Compass, label: "Arquitecto", value: "Marta Rivas" },
-  { icon: MapPin, label: "Ubicación", value: "Valle de Bravo, MX" },
-  { icon: Layers, label: "Tipología", value: "Vivienda unifamiliar" },
+const projects: Project[] = [
+  {
+    title: "Casa Mirador",
+    architect: "Marta Rivas",
+    location: "Valle de Bravo, MX",
+    year: "2027",
+    area: "420 m²",
+    type: "Vivienda unifamiliar",
+    description:
+      "Una residencia de hormigón y cristal que se abre hacia el bosque. Los grandes paños de vidrio disuelven el límite entre interior y exterior mientras la cubierta plana proyecta sombra sobre las estancias.",
+    image: buildingImage,
+  },
+  {
+    title: "Casa Acantilado",
+    architect: "Diego Núñez",
+    location: "Costa Brava, ES",
+    year: "2025",
+    area: "560 m²",
+    type: "Residencia frente al mar",
+    description:
+      "Volúmenes en voladizo que se proyectan sobre el océano. La estructura de hormigón visto se ancla a la roca y enmarca el horizonte desde cada habitación al atardecer.",
+    image: cliffImage,
+  },
+  {
+    title: "Edificio Terrazas",
+    architect: "Lucía Fenoll",
+    location: "Ciudad de México, MX",
+    year: "2026",
+    area: "12.400 m²",
+    type: "Vivienda colectiva",
+    description:
+      "Un bloque residencial con balcones escalonados y jardines colgantes. La fachada rítmica crea sombra natural y dota a cada vivienda de un espacio exterior verde.",
+    image: urbanImage,
+  },
+  {
+    title: "Pabellón del Bosque",
+    architect: "Iván Soto",
+    location: "Patagonia, CL",
+    year: "2024",
+    area: "180 m²",
+    type: "Espacio cultural",
+    description:
+      "Un pabellón de madera y hormigón inspirado en la arquitectura japonesa. El espejo de agua frontal duplica el paisaje y guía el recorrido hacia el interior iluminado.",
+    image: pavilionImage,
+  },
+  {
+    title: "Museo Ola",
+    architect: "Clara Ponce",
+    location: "Lisboa, PT",
+    year: "2028",
+    area: "9.800 m²",
+    type: "Museo de arte",
+    description:
+      "Una pieza escultórica de curvas blancas que dialoga con la plaza pública. La cubierta ondulante crea recorridos fluidos y luz cenital en las salas de exposición.",
+    image: museumImage,
+  },
 ];
 
-const rightDetails: DetailItem[] = [
-  { icon: Ruler, label: "Superficie", value: "420 m²" },
-  { icon: Sun, label: "Año", value: "2027" },
-  { icon: Trees, label: "Entorno", value: "Bosque templado" },
-];
-
-const materials = ["Hormigón visto", "Cristal templado", "Madera de roble", "Acero negro"];
-
-function DetailCard({ icon: Icon, label, value }: DetailItem) {
-  return (
-    <div className="group flex items-start gap-4 border-b border-border/60 pb-5">
-      <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-accent transition-colors group-hover:border-accent">
-        <Icon className="h-4 w-4" />
-      </div>
-      <div>
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
-        <p className="mt-1 font-display text-lg font-medium leading-tight">{value}</p>
-      </div>
-    </div>
-  );
-}
-
-function Showcase() {
+function Portfolio() {
   return (
     <main className="min-h-screen bg-background">
-      <div className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-16">
-        {/* Header */}
-        <header className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-8">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-accent">Atelier · Proyecto 014</p>
-            <h1 className="mt-3 font-display text-5xl font-semibold tracking-tight md:text-7xl">
-              Casa Mirador
-            </h1>
-          </div>
-          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-            Una residencia de hormigón y cristal que enmarca el paisaje del valle desde cada estancia.
+      {/* Hero */}
+      <section className="relative flex min-h-[88vh] items-end overflow-hidden">
+        <img
+          src={buildingImage}
+          alt="Edificio de arquitectura moderna en hormigón y cristal"
+          width={1024}
+          height={1280}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
+          <p className="text-xs uppercase tracking-[0.4em] text-primary-foreground/80">
+            Atelier · Estudio de arquitectura
           </p>
-        </header>
+          <h1 className="mt-4 max-w-3xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-primary-foreground md:text-7xl">
+            Espacios que enmarcan el paisaje
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/85">
+            Una colección de proyectos de arquitectura moderna. Desplázate para
+            recorrer cada edificio, su arquitecto y sus detalles.
+          </p>
+          <a
+            href="#proyectos"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
+          >
+            Ver proyectos
+            <ArrowDown className="h-4 w-4" />
+          </a>
+        </div>
+      </section>
 
-        {/* Showcase: info | photo | info */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.5fr_1fr] lg:gap-10">
-          {/* Left info */}
-          <aside className="order-2 flex flex-col justify-center gap-5 lg:order-1">
-            {leftDetails.map((d) => (
-              <DetailCard key={d.label} {...d} />
-            ))}
-          </aside>
-
-          {/* Center photo */}
-          <figure className="order-1 lg:order-2">
-            <div className="relative overflow-hidden rounded-2xl shadow-[var(--shadow-soft)]">
-              <img
-                src={buildingImage}
-                alt="Render del edificio Casa Mirador en hormigón y cristal rodeado de vegetación"
-                width={1024}
-                height={1280}
-                className="aspect-[4/5] w-full object-cover"
-              />
-              <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
-                En ejecución
-              </span>
+      {/* Stats band */}
+      <section className="border-b border-border">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-border md:grid-cols-4">
+          {[
+            { value: "5", label: "Proyectos" },
+            { value: "12", label: "Premios" },
+            { value: "18", label: "Años de estudio" },
+            { value: "9", label: "Países" },
+          ].map((s) => (
+            <div key={s.label} className="px-6 py-10 text-center">
+              <p className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
+                {s.value}
+              </p>
+              <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {s.label}
+              </p>
             </div>
-            <figcaption className="mt-4 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Fachada sur · Acceso principal
-            </figcaption>
-          </figure>
+          ))}
+        </div>
+      </section>
 
-          {/* Right info */}
-          <aside className="order-3 flex flex-col justify-center gap-5">
-            {rightDetails.map((d) => (
-              <DetailCard key={d.label} {...d} />
-            ))}
-          </aside>
+      {/* Projects */}
+      <section id="proyectos" className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
+        <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
+          <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
+            Proyectos
+          </h2>
+          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+            Cada obra responde a su lugar. Haz clic en “Ver detalles” para conocer
+            el concepto de cada edificio.
+          </p>
         </div>
 
-        {/* Lower band: description + materials */}
-        <section className="mt-16 grid grid-cols-1 gap-10 border-t border-border pt-12 md:grid-cols-2">
-          <div>
-            <h2 className="font-display text-2xl font-semibold">El concepto</h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              Casa Mirador se asienta sobre una plataforma de hormigón que se abre hacia el bosque.
-              Los grandes paños de cristal disuelven el límite entre interior y exterior, mientras la
-              cubierta plana proyecta sombra y protege las estancias del sol directo. La paleta de
-              materiales nobles envejece con el tiempo, integrándose en el paisaje.
-            </p>
-            <a
-              href="#"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-opacity hover:opacity-70"
-            >
-              Ver memoria completa
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </div>
+        <div className="space-y-24 md:space-y-32">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.title} project={project} index={i} />
+          ))}
+        </div>
+      </section>
 
-          <div>
-            <h2 className="font-display text-2xl font-semibold">Materiales</h2>
-            <ul className="mt-4 flex flex-wrap gap-3">
-              {materials.map((m) => (
-                <li
-                  key={m}
-                  className="rounded-full border border-border bg-secondary px-4 py-2 text-sm text-secondary-foreground"
-                >
-                  {m}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      </div>
+      {/* Footer */}
+      <footer className="border-t border-border">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-12 md:px-10">
+          <p className="font-display text-2xl font-semibold">Atelier</p>
+          <p className="text-sm text-muted-foreground">
+            Estudio de arquitectura moderna · {new Date().getFullYear()}
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
