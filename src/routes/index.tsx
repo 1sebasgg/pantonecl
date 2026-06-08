@@ -2,12 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown } from "lucide-react";
 
 import { ProjectCard, type Project } from "@/components/project-card";
-import buildingImage from "@/assets/building-showcase.jpg";
 import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
-import cliffImage from "@/assets/project-cliff.jpg";
-import urbanImage from "@/assets/project-urban.jpg";
-import pavilionImage from "@/assets/project-pavilion.jpg";
-import museumImage from "@/assets/project-museum.jpg";
+import fondoAsset from "@/assets/fondo.jpg.asset.json";
+import proyecto5Asset from "@/assets/proyecto-5.jpg.asset.json";
+import proyecto4Asset from "@/assets/proyecto-4.jpg.asset.json";
+import proyecto3Asset from "@/assets/proyecto-3.jpg.asset.json";
+import proyecto1Asset from "@/assets/proyecto-1.jpg.asset.json";
+
+const buildingImage = fondoAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,48 +45,48 @@ const projects: Project[] = [
     image: maquetaAsset.url,
   },
   {
-    title: "Casa Acantilado",
-    architect: "Diego Núñez",
-    location: "Costa Brava, ES",
-    year: "2025",
-    area: "560 m²",
-    type: "Residencia frente al mar",
-    description:
-      "Volúmenes en voladizo que se proyectan sobre el océano. La estructura de hormigón visto se ancla a la roca y enmarca el horizonte desde cada habitación al atardecer.",
-    image: cliffImage,
-  },
-  {
-    title: "Edificio Terrazas",
-    architect: "Lucía Fenoll",
-    location: "Ciudad de México, MX",
-    year: "2026",
-    area: "12.400 m²",
-    type: "Vivienda colectiva",
-    description:
-      "Un bloque residencial con balcones escalonados y jardines colgantes. La fachada rítmica crea sombra natural y dota a cada vivienda de un espacio exterior verde.",
-    image: urbanImage,
-  },
-  {
-    title: "Pabellón del Bosque",
-    architect: "Iván Soto",
-    location: "Patagonia, CL",
-    year: "2024",
+    title: "Casa Cien",
+    architect: "Pezo von Ellrichshausen",
+    location: "Concepción, CL",
+    year: "2011",
     area: "180 m²",
-    type: "Espacio cultural",
+    type: "Casa-torre",
     description:
-      "Un pabellón de madera y hormigón inspirado en la arquitectura japonesa. El espejo de agua frontal duplica el paisaje y guía el recorrido hacia el interior iluminado.",
-    image: pavilionImage,
+      "Una vivienda vertical de hormigón concebida como una torre habitable. Su volumen compacto y los vanos cuadrados controlan la luz mientras la planta cruciforme organiza la vida doméstica en altura.",
+    image: proyecto5Asset.url,
   },
   {
-    title: "Museo Ola",
-    architect: "Clara Ponce",
-    location: "Lisboa, PT",
-    year: "2028",
-    area: "9.800 m²",
-    type: "Museo de arte",
+    title: "Edificio Banmédica",
+    architect: "Borja Huidobro + A4 Arquitectos",
+    location: "Las Condes, CL",
+    year: "1996",
+    area: "24.000 m²",
+    type: "Edificio corporativo",
     description:
-      "Una pieza escultórica de curvas blancas que dialoga con la plaza pública. La cubierta ondulante crea recorridos fluidos y luz cenital en las salas de exposición.",
-    image: museumImage,
+      "Un hito de la arquitectura corporativa santiaguina. Su volumen escultórico y la fachada técnica resuelven el programa de oficinas con una imagen institucional rotunda y un perfil reconocible en la ciudad.",
+    image: proyecto4Asset.url,
+  },
+  {
+    title: "Museo Regional de Atacama",
+    architect: "Max Núñez",
+    location: "Copiapó, CL",
+    year: "2024",
+    area: "4.200 m²",
+    type: "Museo regional",
+    description:
+      "Un museo que dialoga con el paisaje del desierto. Sus volúmenes abiertos y patios protegen del clima extremo mientras articulan recorridos expositivos en torno a la memoria geológica y cultural de Atacama.",
+    image: proyecto3Asset.url,
+  },
+  {
+    title: "Sala de Maquetas",
+    architect: "Exposición colectiva",
+    location: "Santiago, CL",
+    year: "2025",
+    area: "320 m²",
+    type: "Muestra de arquitectura",
+    description:
+      "Una vista cenital de la muestra: centenares de maquetas de papel desplegadas sobre el parquet del salón histórico. La instalación reúne obras de distintos autores y épocas en un único recorrido a escala.",
+    image: proyecto1Asset.url,
   },
 ];
 
