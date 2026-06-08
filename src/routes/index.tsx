@@ -32,15 +32,15 @@ export const Route = createFileRoute("/")({
 
 const projects: Project[] = [
   {
-    title: "Casa Mirador",
-    architect: "Marta Rivas",
-    location: "Valle de Bravo, MX",
-    year: "2027",
-    area: "420 m²",
-    type: "Vivienda unifamiliar",
+    title: "Casa para el Poema del Ángulo Recto",
+    architect: "Smiljan Radic",
+    location: "Vilches, CL",
+    year: "2013",
+    area: "240 m²",
+    type: "Refugio experimental",
     description:
-      "Una residencia de hormigón y cristal que se abre hacia el bosque. Los grandes paños de vidrio disuelven el límite entre interior y exterior mientras la cubierta plana proyecta sombra sobre las estancias.",
-    image: buildingImage,
+      "Una obra concebida desde la maqueta como pieza escultórica. El volumen quebrado en ángulos rectos juega con la luz y la sombra, traduciendo un poema en arquitectura habitable enclavada en el paisaje.",
+    image: maquetaAsset.url,
   },
   {
     title: "Casa Acantilado",
