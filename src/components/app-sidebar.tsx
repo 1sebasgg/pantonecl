@@ -53,9 +53,9 @@ export function AppSidebar() {
           </div>
           <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
             <span className="font-display text-base font-semibold text-sidebar-foreground">
-              Atelier
+              PANTONE
             </span>
-            <span className="text-xs text-muted-foreground">Estudio de Arquitectura</span>
+            <span className="text-xs text-muted-foreground uppercase tracking-wider">Estudio de Arquitectura</span>
           </div>
         </div>
       </SidebarHeader>

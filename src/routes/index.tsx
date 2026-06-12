@@ -14,13 +14,13 @@ const buildingImage = fondoAsset.url;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Atelier — Portafolio de arquitectura moderna" },
+      { title: "PANTONE — Portafolio de arquitectura moderna" },
       {
         name: "description",
         content:
           "Portafolio visual de proyectos de arquitectura moderna: casas, edificios, pabellones y museos con sus arquitectos y detalles.",
       },
-      { property: "og:title", content: "Atelier — Portafolio de arquitectura" },
+      { property: "og:title", content: "PANTONE — Portafolio de arquitectura" },
       {
         property: "og:description",
         content: "Una colección visual de proyectos de arquitectura moderna y sus detalles.",
@@ -105,7 +105,7 @@ function Portfolio() {
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
           <p className="text-xs uppercase tracking-[0.4em] text-primary-foreground/80">
-            Atelier · Estudio de arquitectura
+            PANTONE · ESTUDIO DE ARQUITECTURA
           </p>
           <h1 className="mt-4 max-w-3xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-primary-foreground md:text-7xl">
             Espacios que enmarcan el paisaje
@@ -167,9 +167,9 @@ function Portfolio() {
       {/* Footer */}
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-12 md:px-10">
-          <p className="font-display text-2xl font-semibold">Atelier</p>
+          <p className="font-display text-2xl font-semibold">PANTONE</p>
           <p className="text-sm text-muted-foreground">
-            Estudio de arquitectura moderna · {new Date().getFullYear()}
+            ESTUDIO DE ARQUITECTURA · {new Date().getFullYear()}
           </p>
         </div>
       </footer>
