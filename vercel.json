@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "framework": null,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": ".output/public"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/_nitro/(.)",
+      "dest": "/_nitro/$1"
+    },
+    {
+      "src": "/api/(.)",
+      "dest": "/.output/server/index.mjs"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/.output/server/index.mjs"
+    }
+  ]
+}
