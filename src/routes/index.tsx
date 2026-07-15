@@ -15,13 +15,13 @@ const buildingImage = assetUrl(fondoAsset.url);
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PANTONE — Portafolio de arquitectura moderna" },
+      { title: "PANTONE" },
       {
         name: "description",
         content:
           "Portafolio visual de proyectos de arquitectura moderna: casas, edificios, pabellones y museos con sus arquitectos y detalles.",
       },
-      { property: "og:title", content: "PANTONE — Portafolio de arquitectura" },
+      { property: "og:title", content: "PANTONE" },
       {
         property: "og:description",
         content: "Una colección visual de proyectos de arquitectura moderna y sus detalles.",
@@ -105,15 +105,11 @@ function Portfolio() {
         />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
-          <p className="text-xs uppercase tracking-[0.4em] text-primary-foreground/80">
-            PANTONE · ESTUDIO DE ARQUITECTURA
-          </p>
           <h1 className="mt-4 max-w-3xl font-display text-5xl font-semibold leading-[1.05] tracking-tight text-primary-foreground md:text-7xl">
-            Espacios que enmarcan el paisaje
+            PANTONE_ Nuestro patrimonio futuro
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/85">
-            Una colección de proyectos de arquitectura moderna. Desplázate para
-            recorrer cada edificio, su arquitecto y sus detalles.
+            La memoria.
           </p>
           <a
             href="#proyectos"
