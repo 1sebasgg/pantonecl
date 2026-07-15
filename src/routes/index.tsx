@@ -117,7 +117,7 @@ function Portfolio() {
             href="#proyectos"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
           >
-            Ver proyectos
+            Ver Exposiciones
             <ArrowDown className="h-4 w-4" />
           </a>
         </div>
