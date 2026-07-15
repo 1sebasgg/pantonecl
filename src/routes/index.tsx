@@ -123,27 +123,6 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* Stats band */}
-      <section className="border-b border-border">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-border md:grid-cols-4">
-          {[
-            { value: "5", label: "Proyectos" },
-            { value: "12", label: "Premios" },
-            { value: "18", label: "Años de estudio" },
-            { value: "9", label: "Países" },
-          ].map((s) => (
-            <div key={s.label} className="px-6 py-10 text-center">
-              <p className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
-                {s.value}
-              </p>
-              <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                {s.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Projects */}
       <section id="proyectos" className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
         <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
