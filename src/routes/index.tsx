@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown } from "lucide-react";
 
 import { ProjectCard, type Project } from "@/components/project-card";
+import { assetUrl } from "@/lib/asset-url";
 import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
 import fondoAsset from "@/assets/fondo.jpg.asset.json";
 import proyecto5Asset from "@/assets/proyecto-5.jpg.asset.json";
@@ -9,7 +10,7 @@ import proyecto4Asset from "@/assets/proyecto-4.jpg.asset.json";
 import proyecto3Asset from "@/assets/proyecto-3.jpg.asset.json";
 import proyecto1Asset from "@/assets/proyecto-1.jpg.asset.json";
 
-const buildingImage = fondoAsset.url;
+const buildingImage = assetUrl(fondoAsset.url);
 
 export const Route = createFileRoute("/")({
   head: () => ({
