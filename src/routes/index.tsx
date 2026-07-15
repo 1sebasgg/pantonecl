@@ -163,15 +163,8 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-12 md:px-10">
-          <p className="font-display text-2xl font-semibold">PANTONE</p>
-          <p className="text-sm text-muted-foreground">
-            ESTUDIO DE ARQUITECTURA · {new Date().getFullYear()}
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
+
     </main>
   );
 }
