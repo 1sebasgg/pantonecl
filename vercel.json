@@ -1,15 +1,8 @@
 {
   "version": 2,
   "framework": null,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": ".output/public"
-      }
-    }
-  ],
+  "outputDirectory": ".output/public",
+  "cleanUrls": true,
   "routes": [
     {
       "src": "/_nitro/(.)",
