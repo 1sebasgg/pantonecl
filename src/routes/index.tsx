@@ -43,7 +43,7 @@ const projects: Project[] = [
     type: "Refugio experimental",
     description:
       "Una obra concebida desde la maqueta como pieza escultórica. El volumen quebrado en ángulos rectos juega con la luz y la sombra, traduciendo un poema en arquitectura habitable enclavada en el paisaje.",
-    image: maquetaAsset.url,
+    image: assetUrl(maquetaAsset.url),
   },
   {
     title: "Casa Cien",
@@ -54,7 +54,7 @@ const projects: Project[] = [
     type: "Casa-torre",
     description:
       "Una vivienda vertical de hormigón concebida como una torre habitable. Su volumen compacto y los vanos cuadrados controlan la luz mientras la planta cruciforme organiza la vida doméstica en altura.",
-    image: proyecto5Asset.url,
+    image: assetUrl(proyecto5Asset.url),
   },
   {
     title: "Edificio Banmédica",
@@ -65,7 +65,7 @@ const projects: Project[] = [
     type: "Edificio corporativo",
     description:
       "Un hito de la arquitectura corporativa santiaguina. Su volumen escultórico y la fachada técnica resuelven el programa de oficinas con una imagen institucional rotunda y un perfil reconocible en la ciudad.",
-    image: proyecto4Asset.url,
+    image: assetUrl(proyecto4Asset.url),
   },
   {
     title: "Museo Regional de Atacama",
@@ -76,7 +76,7 @@ const projects: Project[] = [
     type: "Museo regional",
     description:
       "Un museo que dialoga con el paisaje del desierto. Sus volúmenes abiertos y patios protegen del clima extremo mientras articulan recorridos expositivos en torno a la memoria geológica y cultural de Atacama.",
-    image: proyecto3Asset.url,
+    image: assetUrl(proyecto3Asset.url),
   },
   {
     title: "Sala de Maquetas",
@@ -87,7 +87,7 @@ const projects: Project[] = [
     type: "Muestra de arquitectura",
     description:
       "Una vista cenital de la muestra: centenares de maquetas de papel desplegadas sobre el parquet del salón histórico. La instalación reúne obras de distintos autores y épocas en un único recorrido a escala.",
-    image: proyecto1Asset.url,
+    image: assetUrl(proyecto1Asset.url),
   },
 ];
 
