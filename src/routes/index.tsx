@@ -127,11 +127,11 @@ function Portfolio() {
       <section id="proyectos" className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
         <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
           <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            Proyectos
+            Exposiciones
           </h2>
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
             Cada obra responde a su lugar. Haz clic en “Ver detalles” para conocer
-            el concepto de cada edificio.
+            el concepto de cada exposición.
           </p>
         </div>
 

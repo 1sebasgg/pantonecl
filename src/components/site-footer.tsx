@@ -6,10 +6,6 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-3 md:px-10 md:py-20">
         <div>
           <p className="font-display text-3xl font-semibold tracking-tight">PANTONE</p>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Estudio de arquitectura dedicado a la curaduría, visualización y
-            desarrollo de proyectos contemporáneos en Chile y Latinoamérica.
-          </p>
         </div>
 
         <div>
