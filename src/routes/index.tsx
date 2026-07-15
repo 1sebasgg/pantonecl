@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown } from "lucide-react";
 
 import { ProjectCard, type Project } from "@/components/project-card";
+import { SiteFooter } from "@/components/site-footer";
 import { assetUrl } from "@/lib/asset-url";
+
 import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
 import fondoAsset from "@/assets/fondo.jpg.asset.json";
 import proyecto5Asset from "@/assets/proyecto-5.jpg.asset.json";
@@ -161,15 +163,8 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-12 md:px-10">
-          <p className="font-display text-2xl font-semibold">PANTONE</p>
-          <p className="text-sm text-muted-foreground">
-            ESTUDIO DE ARQUITECTURA · {new Date().getFullYear()}
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
+
     </main>
   );
 }
