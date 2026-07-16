@@ -4,8 +4,8 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "Quiénes somos", to: "/" as const, hash: "quienes-somos" },
-  { label: "Casos", to: "/" as const, hash: "proyectos" },
   { label: "Exposiciones", to: "/" as const, hash: "exposiciones-timeline" },
+  { label: "Casos", to: "/" as const, hash: "casos" },
   { label: "Contacto", to: "/" as const, hash: "contacto" },
 ];
 
