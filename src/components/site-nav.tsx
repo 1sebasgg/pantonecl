@@ -3,9 +3,9 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Quiénes somos", to: "/estudio" as const, hash: undefined },
-  { label: "Exposiciones", to: "/exposiciones" as const, hash: undefined },
+  { label: "Quiénes somos", to: "/" as const, hash: "quienes-somos" },
   { label: "Casos", to: "/" as const, hash: "proyectos" },
+  { label: "Exposiciones", to: "/" as const, hash: "exposiciones-timeline" },
   { label: "Contacto", to: "/" as const, hash: "contacto" },
 ];
 
@@ -22,32 +22,37 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Solid nav on interior pages; transparent-over-hero on home until scrolled.
   const solid = scrolled || !isHome;
+
+  // NUEVA FUNCIÓN: Fuerza el scroll al elemento saltándose la limitación del router
+  const handleScrollClick = (hash?: string) => {
+    if (hash) {
+      const element = document.getElementById(hash);
+      if (element) {
+        // Hacemos que el navegador haga scroll hacia el ID suavemente
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    // Si el menú de celular estaba abierto, lo cerramos
+    setOpen(false);
+  };
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        solid
-          ? "border-b border-border bg-background/85 backdrop-blur-md"
-          : "bg-transparent"
+        solid ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
         <Link
           to="/"
+          hash=""
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className={`font-display text-xl font-semibold tracking-tight transition-colors ${
             solid ? "text-foreground" : "text-primary-foreground"
           }`}
         >
           PANTONE
-          <span
-            className={`ml-3 hidden text-[10px] font-normal uppercase tracking-[0.28em] md:inline ${
-              solid ? "text-muted-foreground" : "text-primary-foreground/70"
-            }`}
-          >
-            Estudio · Santiago, CL
-          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -56,11 +61,11 @@ export function SiteNav() {
               key={l.label}
               to={l.to}
               hash={l.hash}
+              // Agregamos el onClick aquí para escritorio
+              onClick={() => handleScrollClick(l.hash)}
               className={`font-display text-[13px] uppercase tracking-[0.22em] transition-opacity hover:opacity-60 ${
                 solid ? "text-foreground" : "text-primary-foreground"
               }`}
-              activeOptions={{ exact: true }}
-              activeProps={{ className: "opacity-60" }}
             >
               {l.label}
             </Link>
@@ -84,7 +89,8 @@ export function SiteNav() {
                 key={l.label}
                 to={l.to}
                 hash={l.hash}
-                onClick={() => setOpen(false)}
+                // Agregamos el onClick aquí para móviles
+                onClick={() => handleScrollClick(l.hash)}
                 className="py-3 font-display text-sm uppercase tracking-[0.22em] text-foreground"
               >
                 {l.label}

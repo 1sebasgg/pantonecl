@@ -15,6 +15,7 @@
 
   --font-display: "Fraunces", Georgia, serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -96,7 +97,11 @@
   --sidebar-border: oklch(0.9 0.01 80);
   --sidebar-ring: oklch(0.62 0.13 48);
 
-  --gradient-hero: linear-gradient(180deg, oklch(0.22 0.012 60 / 0) 0%, oklch(0.18 0.012 55 / 0.85) 100%);
+  --gradient-hero: linear-gradient(
+    180deg,
+    oklch(0.22 0.012 60 / 0) 0%,
+    oklch(0.18 0.012 55 / 0.85) 100%
+  );
   --shadow-soft: 0 1px 2px oklch(0.3 0.02 60 / 0.04), 0 8px 24px -12px oklch(0.3 0.02 60 / 0.12);
 }
 
@@ -142,7 +147,10 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
@@ -152,4 +160,10 @@
   .font-display {
     font-family: var(--font-display);
   }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Este padding asegura que el header fijo no tape el título de las secciones */
+  scroll-padding-top: 80px;
 }
