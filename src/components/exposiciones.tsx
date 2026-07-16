@@ -422,7 +422,7 @@ export function ExposicionesTimeline() {
           <div className="et-content-area">
             <div className="et-info-header">
               <span className="et-eyebrow" style={{ display: "block", marginBottom: "0.5rem" }}>
-                Proyecto 0{activeIndex + 1}
+                Proyecto A{activeIndex + 1}
               </span>
               <h2 className="et-info-title">{activeNode.title}</h2>
               <p className="et-info-place">
