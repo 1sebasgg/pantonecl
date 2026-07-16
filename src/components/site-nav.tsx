@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Quiénes somos", hash: "hero" },
-  { label: "Exposiciones", hash: "exposiciones" },
-  { label: "Casos", hash: "casos" },
-  { label: "Contacto", hash: "contacto" },
+  { label: "Quiénes somos", to: "/" as const, hash: "quienes-somos" },
+  { label: "Casos", to: "/" as const, hash: "proyectos" },
+  { label: "Exposiciones", to: "/" as const, hash: "exposiciones-timeline" },
+  { label: "Contacto", to: "/" as const, hash: "contacto" },
 ];
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (r) => r.location.pathname });
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -18,12 +22,18 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const solid = scrolled;
+  const solid = scrolled || !isHome;
 
-  const scrollTo = (hash: string) => {
-    const el = document.getElementById(hash);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-    else window.scrollTo({ top: 0, behavior: "smooth" });
+  // NUEVA FUNCIÓN: Fuerza el scroll al elemento saltándose la limitación del router
+  const handleScrollClick = (hash?: string) => {
+    if (hash) {
+      const element = document.getElementById(hash);
+      if (element) {
+        // Hacemos que el navegador haga scroll hacia el ID suavemente
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    // Si el menú de celular estaba abierto, lo cerramos
     setOpen(false);
   };
 
@@ -34,37 +44,40 @@ export function SiteNav() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
-        <button
-          onClick={() => scrollTo("hero")}
-          className={`font-display text-xl font-semibold uppercase tracking-[0.2em] transition-colors ${
+        <Link
+          to="/"
+          hash=""
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className={`font-display text-xl font-semibold tracking-tight transition-colors ${
             solid ? "text-foreground" : "text-primary-foreground"
           }`}
         >
           PANTONE
-        </button>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <button
+            <Link
               key={l.label}
-              onClick={() => scrollTo(l.hash)}
+              to={l.to}
+              hash={l.hash}
+              // Agregamos el onClick aquí para escritorio
+              onClick={() => handleScrollClick(l.hash)}
               className={`font-display text-[13px] uppercase tracking-[0.22em] transition-opacity hover:opacity-60 ${
                 solid ? "text-foreground" : "text-primary-foreground"
               }`}
             >
               {l.label}
-            </button>
+            </Link>
           ))}
         </nav>
 
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="Menú"
-          className={`md:hidden font-display text-sm uppercase tracking-[0.2em] ${
-            solid ? "text-foreground" : "text-primary-foreground"
-          }`}
+          className={`md:hidden ${solid ? "text-foreground" : "text-primary-foreground"}`}
         >
-          {open ? "Cerrar" : "Menú"}
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
@@ -72,13 +85,16 @@ export function SiteNav() {
         <div className="border-t border-border bg-background md:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col px-6 py-4">
             {links.map((l) => (
-              <button
+              <Link
                 key={l.label}
-                onClick={() => scrollTo(l.hash)}
-                className="py-3 text-left font-display text-sm uppercase tracking-[0.22em] text-foreground"
+                to={l.to}
+                hash={l.hash}
+                // Agregamos el onClick aquí para móviles
+                onClick={() => handleScrollClick(l.hash)}
+                className="py-3 font-display text-sm uppercase tracking-[0.22em] text-foreground"
               >
                 {l.label}
-              </button>
+              </Link>
             ))}
           </nav>
         </div>

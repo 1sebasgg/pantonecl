@@ -16,10 +16,10 @@ export function Hero() {
       />
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
-        <h1 className="mt-4 max-w-3xl font-display text-5xl font-semibold uppercase leading-[1.05] tracking-[0.12em] text-primary-foreground md:text-8xl">
+        <h1 className="mt-4 max-w-3xl font-serif text-5xl leading-[1.05] tracking-tight text-primary-foreground md:text-8xl">
           PANTONE
         </h1>
-        <p className="mt-4 max-w-3xl font-display italic text-4xl leading-[1.1] tracking-tight text-primary-foreground md:text-6xl">
+        <p className="mt-4 max-w-3xl font-serif italic text-5xl leading-[1.05] tracking-tight text-primary-foreground md:text-6xl">
           Nuestro patrimonio futuro
         </p>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/85">
