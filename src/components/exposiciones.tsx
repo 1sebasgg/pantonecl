@@ -134,7 +134,6 @@ export function ExposicionesTimeline() {
         }
         .et-h1 {
           font-family: 'Playfair Display', serif;
-          font-weight: 700;
           font-size: clamp(2.4rem, 4vw, 3.5rem);
           letter-spacing: -0.01em;
           margin: 0.75rem 0 1rem;

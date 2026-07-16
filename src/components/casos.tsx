@@ -44,7 +44,7 @@ export function CasosSection() {
       <div className="flex flex-col md:flex-row md:items-baseline justify-between border-b border-gray-200 pb-4 mb-10 gap-6">
         {/* Lado Izquierdo */}
         <div className="flex items-baseline gap-4">
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-900 tracking-tight">Casos</h2>
+          <h2 className="mt-4 font-display text-5xl tracking-tight md:text-6xl">Casos</h2>
           <span className="text-[10px] md:text-xs tracking-[0.15em] text-gray-400 uppercase font-semibold">
             {filteredCasos.length} Maquetas
           </span>
