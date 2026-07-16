@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 
+import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
+import proyecto5Asset from "@/assets/proyecto-5.jpg.asset.json";
+import proyecto4Asset from "@/assets/proyecto-4.jpg.asset.json";
+import proyecto3Asset from "@/assets/proyecto-3.jpg.asset.json";
+import proyecto1Asset from "@/assets/proyecto-1.jpg.asset.json";
+import { assetUrl } from "@/lib/asset-url";
+
 /**
  * Datos de la línea de tiempo.
  * Se ha integrado el arreglo de imágenes necesario para el carrusel.
@@ -28,13 +35,13 @@ const timeline: TimelineItem[] = [
     images: [
       {
         id: 1,
-        src: "/api/placeholder/800/600",
+        src: assetUrl(maquetaAsset.url),
         alt: "Vista central de la sala",
         description: "Vista general de las más de 100 maquetas expuestas sobre el parquet.",
       },
       {
         id: 2,
-        src: "/api/placeholder/800/600",
+        src: assetUrl(proyecto1Asset.url),
         alt: "Detalle de maqueta 1",
         description: "Acercamiento a los detalles constructivos en madera.",
       },
@@ -48,13 +55,13 @@ const timeline: TimelineItem[] = [
     images: [
       {
         id: 1,
-        src: "/api/placeholder/800/600",
+        src: assetUrl(proyecto4Asset.url),
         alt: "Paisaje desértico",
         description: "Montaje principal dialogando con la aridez del entorno.",
       },
       {
         id: 2,
-        src: "/api/placeholder/800/600",
+        src: assetUrl(proyecto5Asset.url),
         alt: "Montaje de obra",
         description: "Estructuras ligeras suspendidas en la sala principal.",
       },
@@ -68,7 +75,7 @@ const timeline: TimelineItem[] = [
     images: [
       {
         id: 1,
-        src: "/api/placeholder/800/600",
+        src: assetUrl(proyecto3Asset.url),
         alt: "Estructura vertical",
         description: "Maqueta a escala de la estructura vertical principal.",
       },
