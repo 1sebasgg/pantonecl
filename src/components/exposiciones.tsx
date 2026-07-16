@@ -22,7 +22,7 @@ interface TimelineItem {
 const timeline: TimelineItem[] = [
   {
     year: "2025",
-    title: "Sala de Maquetas",
+    title: "  Sala de Maquetas",
     place: "Palacio Pereira, Santiago",
     text: "Muestra colectiva que reúne más de cien maquetas de arquitectura chilena contemporánea sobre el parquet del salón histórico.",
     images: [
@@ -42,7 +42,7 @@ const timeline: TimelineItem[] = [
   },
   {
     year: "2024",
-    title: "Atacama · Territorio y memoria",
+    title: "  Atacama · Territorio y memoria",
     place: "Museo Regional de Atacama, Copiapó",
     text: "Curaduría en torno a la obra de Max Núñez y su diálogo con el paisaje del desierto.",
     images: [
@@ -62,7 +62,7 @@ const timeline: TimelineItem[] = [
   },
   {
     year: "2022",
-    title: "Casa-torre",
+    title: "  Casa-torre",
     place: "Centro Cultural GAM, Santiago",
     text: "Recorrido por la obra de Pezo von Ellrichshausen a través de sus casas verticales.",
     images: [
