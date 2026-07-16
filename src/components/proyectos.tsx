@@ -65,23 +65,49 @@ const projects: Project[] = [
   },
 ];
 
+const timeline = projects.map((p) => ({ year: p.year, title: p.title }));
+
 export function Proyectos() {
   return (
-    <section id="proyectos" className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
+    <section id="exposiciones" className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
       <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
         <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
           Exposiciones
         </h2>
         <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-          Cada obra responde a su lugar. Haz clic en “Ver detalles” para conocer el concepto de cada
+          Cada obra responde a su lugar. Haz clic en "Ver detalles" para conocer el concepto de cada
           exposición.
         </p>
       </div>
 
-      <div className="space-y-24 md:space-y-32">
-        {projects.map((project, i) => (
-          <ProjectCard key={project.title} project={project} index={i} />
-        ))}
+      <div className="grid gap-12 md:grid-cols-[220px_1fr] md:gap-16">
+        {/* Línea de tiempo estilo estaciones de metro */}
+        <aside className="md:sticky md:top-28 md:self-start">
+          <p className="mb-6 text-xs uppercase tracking-[0.28em] text-accent">Línea de tiempo</p>
+          <ol className="relative">
+            <span
+              aria-hidden
+              className="absolute left-[7px] top-2 bottom-2 w-[2px] bg-border"
+            />
+            {timeline.map((t) => (
+              <li key={t.title} className="relative flex items-start gap-4 pb-8 last:pb-0">
+                <span className="relative z-10 mt-1 h-4 w-4 shrink-0 rounded-full border-2 border-accent bg-background" />
+                <div>
+                  <p className="font-display text-lg font-semibold tracking-tight">{t.year}</p>
+                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    {t.title}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </aside>
+
+        <div className="space-y-24 md:space-y-32">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.title} project={project} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );
