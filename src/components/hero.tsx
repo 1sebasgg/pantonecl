@@ -1,9 +1,20 @@
 import { ArrowDown } from "lucide-react";
 import { assetUrl } from "@/lib/asset-url";
 import fondoAsset from "@/assets/fondo.jpg.asset.json";
+import { Link, useRouterState } from "@tanstack/react-router";
 
 export function Hero() {
   const buildingImage = assetUrl(fondoAsset.url);
+
+  const handleScrollClick = (hash?: string) => {
+    if (hash) {
+      const element = document.getElementById(hash);
+      if (element) {
+        // Hacemos que el navegador haga scroll hacia el ID suavemente
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <section id="hero" className="relative flex min-h-[88vh] items-end overflow-hidden">
@@ -25,13 +36,15 @@ export function Hero() {
         <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/85">
           La memoria.
         </p>
-        <a
-          href="#proyectos"
+        <Link
+          to="/"
+          hash="exposiciones-timeline"
+          onClick={() => handleScrollClick("exposiciones-timeline")}
           className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
         >
           Ver Exposiciones
           <ArrowDown className="h-4 w-4" />
-        </a>
+        </Link>
       </div>
     </section>
   );
