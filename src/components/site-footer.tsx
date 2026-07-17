@@ -32,7 +32,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 md:px-10">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-4 px-6 py-6 md:px-10">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} — Todos los derechos reservados
           </p>
