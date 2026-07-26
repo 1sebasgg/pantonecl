@@ -21,16 +21,6 @@
   margin-top: 3.5rem;
 }
 
-@media (max-width: 860px) {
-  .et-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .et-rail {
-    display: none;
-  }
-}
-
 /* --- Riel izquierdo Original --- */
 .et-rail {
   position: sticky;
@@ -39,13 +29,45 @@
   height: fit-content;
 }
 
+.et-rail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
 .et-rail-label {
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   display: block;
+}
+
+.et-rail-arrows {
+  display: none;
+}
+
+.et-rail-arrow {
+  all: unset;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.2s ease;
+}
+
+.et-rail-arrow:hover,
+.et-rail-arrow:focus-visible {
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 .et-track {
@@ -53,23 +75,15 @@
   padding-left: 1.75rem;
 }
 
-.et-track::before {
-  content: "";
+.et-track-bg {
   position: absolute;
-  left: 5px;
-  top: 6px;
-  bottom: 6px;
-  width: 2px;
   background: var(--border);
 }
 
 .et-track-fill {
   position: absolute;
-  left: 5px;
-  top: 6px;
-  width: 2px;
   background: var(--accent);
-  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s cubic-bezier(0.4, 0, 0.2, 1), left 0.5s cubic-bezier(0.4, 0, 0.2, 1), top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .et-node {
@@ -293,15 +307,74 @@
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* --- Media Queries (DEBEN IR AL FINAL PARA SOBRESCRIBIR CORRECTAMENTE) --- */
+@media (max-width: 860px) {
+  .et-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 
+  .et-rail {
+    display: block;
+    position: relative;
+    top: 0;
+    height: auto;
+  }
+  
+  .et-rail-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .et-rail-arrows {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .et-track {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-left: 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    gap: 1.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .et-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .et-node {
+    padding: 2rem 0 0 0;
+    min-width: 6rem;
+    width: auto;
+    text-align: center;
+    flex: 1 0 auto; 
+  }
+
+  .et-node::before {
+    left: 50%;
+    top: 0;
+    margin-left: -6px;
+  }
+
+  /* Desactivar el sticky de content-area en móvil para evitar solapamientos con el rail */
+  .et-content-area {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   .et-node::before,
+  .et-track-bg,
   .et-track-fill,
   .et-carousel-img,
   .et-nav-btn,

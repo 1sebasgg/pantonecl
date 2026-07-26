@@ -39,18 +39,16 @@ export function SiteNav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        solid ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${solid ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent"
+        }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
         <Link
           to="/"
           hash=""
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`font-display text-xl font-semibold tracking-tight transition-colors ${
-            solid ? "text-foreground" : "text-primary-foreground"
-          }`}
+          className={`font-display text-xl font-semibold tracking-tight transition-colors ${solid ? "text-foreground" : "text-primary-foreground"
+            }`}
         >
           PANTONE
         </Link>
@@ -63,9 +61,8 @@ export function SiteNav() {
               hash={l.hash}
               // Agregamos el onClick aquí para escritorio
               onClick={() => handleScrollClick(l.hash)}
-              className={`font-display text-[13px] uppercase tracking-[0.22em] transition-opacity hover:opacity-60 ${
-                solid ? "text-foreground" : "text-primary-foreground"
-              }`}
+              className={`font-display text-[13px] uppercase tracking-[0.22em] transition-opacity hover:opacity-60 ${solid ? "text-foreground" : "text-primary-foreground"
+                }`}
             >
               {l.label}
             </Link>
