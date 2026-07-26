@@ -41,8 +41,7 @@ export function AppSidebar() {
     select: (router) => router.location.pathname,
   });
 
-  const isActive = (path: string, title: string) =>
-    title === "Resumen" && currentPath === path;
+  const isActive = (path: string, title: string) => title === "Resumen" && currentPath === path;
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
@@ -55,7 +54,9 @@ export function AppSidebar() {
             <span className="font-display text-base font-semibold text-sidebar-foreground">
               PANTONE
             </span>
-            <span className="text-xs text-muted-foreground uppercase tracking-wider">Estudio de Arquitectura</span>
+            <span className="text-xs text-muted-foreground uppercase tracking-wider">
+              Estudio de Arquitectura
+            </span>
           </div>
         </div>
       </SidebarHeader>

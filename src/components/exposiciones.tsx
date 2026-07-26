@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // 1. Añades la importación del nuevo archivo CSS aquí:
-import "./exposiciones.css";
+import "./styles/exposiciones.css";
 
 import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
 import proyecto5Asset from "@/assets/proyecto-5.jpg.asset.json";
@@ -112,14 +112,14 @@ export function ExposicionesTimeline() {
   return (
     <section
       id="exposiciones-timeline"
-      className="et-section"
+      className="et-section mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28"
       aria-label="Exposiciones — línea de tiempo interactiva"
     >
       {/* 2. La etiqueta <style> se ha eliminado por completo de aquí */}
       <div className="et-inner">
-        <p className="et-eyebrow">Línea de tiempo</p>
-        <h1 className="et-h1">Exposiciones</h1>
-        <p className="et-lede">
+        <p className="text-eyebrow">Línea de tiempo</p>
+        <h2 className="mt-4 text-section-title">Exposiciones</h2>
+        <p className="text-lede mt-6">
           Un recorrido cronológico por las muestras que hemos curado y producido, desde
           instalaciones internacionales hasta exposiciones patrimoniales. Elige un año para
           explorar.
@@ -150,7 +150,7 @@ export function ExposicionesTimeline() {
           {/* Columna Derecha: Información y Carrusel */}
           <div className="et-content-area">
             <div className="et-info-header">
-              <span className="et-eyebrow" style={{ display: "block", marginBottom: "0.5rem" }}>
+              <span className="text-eyebrow" style={{ display: "block", marginBottom: "0.5rem" }}>
                 Proyecto A{activeIndex + 1}
               </span>
               <h2 className="et-info-title">{activeNode.title}</h2>

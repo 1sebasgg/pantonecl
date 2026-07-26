@@ -69,7 +69,7 @@ export function Proyectos() {
   return (
     <section id="proyectos" className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
       <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
-        <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
+        <h2 className="text-section-title">
           Exposiciones
         </h2>
         <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">

@@ -1,49 +1,31 @@
 /* --- Variables y Estilos Base Originales --- */
 .et-section {
-  --bg: #f7f4ee;
-  --ink: #211c17;
-  --muted: #8c8377;
-  --accent: #c05f34;
-  --accent-soft: #eadfd2;
-  --border: #e4ddd0;
+  --bg: var(--color-background);
+  --ink: var(--color-foreground);
+  --muted: var(--color-muted-foreground);
+  --accent: var(--color-accent);
+  --accent-soft: var(--color-secondary);
+  --border: var(--color-border);
   background: var(--bg);
   color: var(--ink);
-  font-family: "Inter", sans-serif;
-  padding: 5rem 1.5rem;
+  font-family: var(--font-sans);
 }
+
 .et-inner {
-  max-width: 72rem;
-  margin: 0 auto;
 }
-.et-eyebrow {
-  font-size: 0.7rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-}
-.et-h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2.4rem, 4vw, 3.5rem);
-  letter-spacing: -0.01em;
-  margin: 0.75rem 0 1rem;
-}
-.et-lede {
-  max-width: 40rem;
-  color: var(--muted);
-  line-height: 1.7;
-  font-size: 1rem;
-}
+
 .et-grid {
   display: grid;
   grid-template-columns: 15rem 1fr;
   gap: 3rem;
   margin-top: 3.5rem;
 }
+
 @media (max-width: 860px) {
   .et-grid {
     grid-template-columns: 1fr;
   }
+
   .et-rail {
     display: none;
   }
@@ -56,6 +38,7 @@
   align-self: start;
   height: fit-content;
 }
+
 .et-rail-label {
   font-size: 0.7rem;
   letter-spacing: 0.22em;
@@ -64,10 +47,12 @@
   margin-bottom: 1.5rem;
   display: block;
 }
+
 .et-track {
   position: relative;
   padding-left: 1.75rem;
 }
+
 .et-track::before {
   content: "";
   position: absolute;
@@ -77,6 +62,7 @@
   width: 2px;
   background: var(--border);
 }
+
 .et-track-fill {
   position: absolute;
   left: 5px;
@@ -85,6 +71,7 @@
   background: var(--accent);
   transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .et-node {
   all: unset;
   display: block;
@@ -94,9 +81,11 @@
   padding: 0 0 2.1rem;
   text-align: left;
 }
+
 .et-node:last-child {
   padding-bottom: 0;
 }
+
 .et-node::before {
   content: "";
   position: absolute;
@@ -109,26 +98,31 @@
   border: 2px solid var(--border);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .et-node.is-active::before {
   border-color: var(--accent);
   background: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-soft);
   transform: scale(1.15);
 }
+
 .et-node:focus-visible::before {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
+
 .et-node-year {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
   font-weight: 600;
   font-size: 1.15rem;
   color: var(--muted);
   transition: color 0.3s ease;
 }
+
 .et-node.is-active .et-node-year {
   color: var(--ink);
 }
+
 .et-node-title {
   font-size: 0.72rem;
   letter-spacing: 0.02em;
@@ -138,6 +132,7 @@
   line-height: 1.4;
   transition: color 0.3s ease;
 }
+
 .et-node.is-active .et-node-title {
   color: var(--accent);
 }
@@ -150,17 +145,20 @@
   flex-direction: column;
   gap: 1.5rem;
 }
+
 .et-info-header {
   margin-bottom: 0.5rem;
 }
+
 .et-info-title {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
   font-weight: 600;
   font-size: 2rem;
   color: var(--ink);
   margin-bottom: 0.25rem;
   line-height: 1.2;
 }
+
 .et-info-place {
   font-size: 0.85rem;
   color: var(--muted);
@@ -169,6 +167,7 @@
   gap: 0.35rem;
   margin-bottom: 1rem;
 }
+
 .et-info-text {
   font-size: 0.95rem;
   line-height: 1.6;
@@ -186,12 +185,14 @@
   border: 1px solid var(--border);
   box-shadow: 0 10px 30px -18px rgba(33, 28, 23, 0.15);
 }
+
 .et-carousel-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   animation: etFadeIn 0.5s ease;
 }
+
 .et-carousel-gradient {
   position: absolute;
   bottom: 0;
@@ -222,16 +223,20 @@
   transition: all 0.3s ease;
   z-index: 10;
 }
+
 .et-carousel-container:hover .et-nav-btn,
 .et-nav-btn:focus-visible {
   opacity: 1;
 }
+
 .et-nav-btn:hover {
   background: #fff;
 }
+
 .et-nav-btn.prev {
   left: 1rem;
 }
+
 .et-nav-btn.next {
   right: 1rem;
 }
@@ -246,6 +251,7 @@
   gap: 0.5rem;
   z-index: 10;
 }
+
 .et-dot {
   all: unset;
   height: 0.5rem;
@@ -255,13 +261,16 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .et-dot.is-active {
   width: 2rem;
   background: var(--accent);
 }
+
 .et-dot:not(.is-active) {
   width: 0.5rem;
 }
+
 .et-dot:not(.is-active):hover {
   background: rgba(255, 255, 255, 0.9);
 }
@@ -272,6 +281,7 @@
   padding-left: 1rem;
   min-height: 3rem;
 }
+
 .et-desc-text {
   font-size: 0.85rem;
   line-height: 1.6;
@@ -283,12 +293,14 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .et-node::before,
   .et-track-fill,
   .et-carousel-img,
