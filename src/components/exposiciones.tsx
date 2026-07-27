@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// 1. Añades la importación del nuevo archivo CSS aquí:
 import "./styles/exposiciones.css";
 
 import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
@@ -10,10 +9,6 @@ import proyecto3Asset from "@/assets/proyecto-3.jpg.asset.json";
 import proyecto1Asset from "@/assets/proyecto-1.jpg.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
-/**
- * Datos de la línea de tiempo.
- * Se ha integrado el arreglo de imágenes necesario para el carrusel.
- */
 interface TimelineImage {
   id: number;
   src: string;
@@ -32,7 +27,7 @@ interface TimelineItem {
 const timeline: TimelineItem[] = [
   {
     year: "2022",
-    title: "  Casa-torre",
+    title: "Casa-torre",
     place: "Centro Cultural GAM, Santiago",
     text: "Recorrido por la obra de Pezo von Ellrichshausen a través de sus casas verticales.",
     images: [
@@ -46,7 +41,7 @@ const timeline: TimelineItem[] = [
   },
   {
     year: "2024",
-    title: "  Atacama · Territorio y memoria",
+    title: "Atacama · Territorio y memoria",
     place: "Museo Regional de Atacama, Copiapó",
     text: "Curaduría en torno a la obra de Max Núñez y su diálogo con el paisaje del desierto.",
     images: [
@@ -66,7 +61,7 @@ const timeline: TimelineItem[] = [
   },
   {
     year: "2025",
-    title: "  Sala de Maquetas",
+    title: "Sala de Maquetas",
     place: "Palacio Pereira, Santiago",
     text: "Muestra colectiva que reúne más de cien maquetas de arquitectura chilena contemporánea sobre el parquet del salón histórico.",
     images: [
@@ -87,77 +82,11 @@ const timeline: TimelineItem[] = [
 ];
 
 export function ExposicionesTimeline() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(1);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const trackRef = React.useRef<HTMLDivElement>(null);
-  const [bgLineStyle, setBgLineStyle] = useState<React.CSSProperties>({});
-  const [fillLineStyle, setFillLineStyle] = useState<React.CSSProperties>({});
 
   const activeNode = timeline[activeIndex];
   const currentImage = activeNode.images[currentImageIndex];
-
-  React.useEffect(() => {
-    const updateLines = () => {
-      if (!trackRef.current) return;
-      const track = trackRef.current;
-      const nodes = Array.from(track.querySelectorAll('.et-node')) as HTMLElement[];
-      if (nodes.length < 2) return;
-
-      const firstNode = nodes[0];
-      const lastNode = nodes[nodes.length - 1];
-      const activeNodeEl = nodes[activeIndex];
-
-      // Verificar si los nodos están alineados horizontalmente (móvil) o verticalmente (escritorio)
-      const isHorizontal = firstNode.offsetTop === lastNode.offsetTop;
-
-      if (isHorizontal) {
-        // Centro horizontal = offsetLeft + (ancho / 2)
-        const firstCenter = firstNode.offsetLeft + firstNode.offsetWidth / 2;
-        const lastCenter = lastNode.offsetLeft + lastNode.offsetWidth / 2;
-        const activeCenter = activeNodeEl.offsetLeft + activeNodeEl.offsetWidth / 2;
-
-        setBgLineStyle({
-          left: `${firstCenter}px`,
-          width: `${lastCenter - firstCenter}px`,
-          top: '29px',
-          height: '2px',
-        });
-
-        setFillLineStyle({
-          left: `${firstCenter}px`,
-          width: `${activeCenter - firstCenter}px`,
-          top: '29px',
-          height: '2px',
-        });
-      } else {
-        // Centro vertical = offsetTop + 10px (4px de top + 6px de radio del punto)
-        const firstTop = firstNode.offsetTop + 10;
-        const lastTop = lastNode.offsetTop + 10;
-        const activeTop = activeNodeEl.offsetTop + 10;
-
-        setBgLineStyle({
-          top: `${firstTop}px`,
-          height: `${lastTop - firstTop}px`,
-          left: '5px',
-          width: '2px',
-        });
-
-        setFillLineStyle({
-          top: `${firstTop}px`,
-          height: `${activeTop - firstTop}px`,
-          left: '5px',
-          width: '2px',
-        });
-      }
-    };
-
-    const timer = setTimeout(updateLines, 50);
-    window.addEventListener('resize', updateLines);
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', updateLines);
-    };
-  }, [activeIndex]);
 
   const handleNodeClick = (idx: number) => {
     setActiveIndex(idx);
@@ -173,10 +102,15 @@ export function ExposicionesTimeline() {
   };
 
   const handleScrollRail = (direction: number) => {
-    if (trackRef.current) {
-      const scrollAmount = 200; // cantidad de pixeles a desplazar
-      trackRef.current.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+    const newIdx = activeIndex + direction;
+    if (newIdx >= 0 && newIdx < timeline.length) {
+      handleNodeClick(newIdx);
     }
+  };
+
+  const getVisibleNodes = () => {
+    // Ya no filtramos los nodos, mostramos todos más los fantasmas al inicio y al final
+    return timeline;
   };
 
   return (
@@ -195,7 +129,7 @@ export function ExposicionesTimeline() {
         </p>
 
         <div className="et-grid">
-          {/* Columna Izquierda: Riel de navegación */}
+          {/* Columna Izquierda: Riel de navegación de 3 Nodos */}
           <nav className="et-rail" aria-label="Selecciona una exposición">
             <div className="et-rail-header">
               <span className="et-rail-label">Explorar</span>
@@ -204,7 +138,9 @@ export function ExposicionesTimeline() {
                   type="button"
                   className="et-rail-arrow"
                   onClick={() => handleScrollRail(-1)}
-                  aria-label="Desplazar a la izquierda"
+                  aria-label="Anterior"
+                  disabled={activeIndex === 0}
+                  style={{ opacity: activeIndex === 0 ? 0.3 : 1, cursor: activeIndex === 0 ? 'default' : 'pointer' }}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
                 </button>
@@ -212,27 +148,46 @@ export function ExposicionesTimeline() {
                   type="button"
                   className="et-rail-arrow"
                   onClick={() => handleScrollRail(1)}
-                  aria-label="Desplazar a la derecha"
+                  aria-label="Siguiente"
+                  disabled={activeIndex === timeline.length - 1}
+                  style={{ opacity: activeIndex === timeline.length - 1 ? 0.3 : 1, cursor: activeIndex === timeline.length - 1 ? 'default' : 'pointer' }}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
                 </button>
               </div>
             </div>
-            <div className="et-track" ref={trackRef}>
-              <div className="et-track-bg" style={bgLineStyle} />
-              <div className="et-track-fill" style={fillLineStyle} />
-              {timeline.map((item, idx) => (
-                <button
-                  key={item.year + item.title}
-                  type="button"
-                  className={`et-node${idx === activeIndex ? " is-active" : ""}`}
-                  onClick={() => handleNodeClick(idx)}
-                  aria-current={idx === activeIndex ? "true" : undefined}
-                >
-                  <span className="et-node-year">{item.year}</span>
-                  <span className="et-node-title">{item.title}</span>
-                </button>
-              ))}
+            <div 
+              className="et-track-window"
+              style={{
+                "--timeline-length": timeline.length,
+                "--translate-idx": activeIndex,
+              } as React.CSSProperties}
+            >
+              <div className="et-track-inner">
+                <div className="et-track-bg" />
+                <div className="et-track-fill" />
+                
+                {/* Fantasma Inicial */}
+                <div className="et-slot" />
+                
+                {/* Nodos Reales */}
+                {timeline.map((item, idx) => (
+                  <div key={idx} className="et-slot">
+                    <button
+                      type="button"
+                      className={`et-node${idx === activeIndex ? " is-active" : ""}${idx < activeIndex ? " is-completed" : ""}`}
+                      onClick={() => handleNodeClick(idx)}
+                      aria-current={idx === activeIndex ? "true" : undefined}
+                    >
+                      <span className="et-node-year">{item.year}</span>
+                      <span className="et-node-title">{item.title}</span>
+                    </button>
+                  </div>
+                ))}
+                
+                {/* Fantasma Final */}
+                <div className="et-slot" />
+              </div>
             </div>
           </nav>
 
@@ -267,16 +222,7 @@ export function ExposicionesTimeline() {
                     className="et-nav-btn prev"
                     aria-label="Imagen anterior"
                   >
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="m15 18-6-6 6-6" />
                     </svg>
                   </button>
@@ -285,16 +231,7 @@ export function ExposicionesTimeline() {
                     className="et-nav-btn next"
                     aria-label="Siguiente imagen"
                   >
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="m9 18 6-6-6-6" />
                     </svg>
                   </button>

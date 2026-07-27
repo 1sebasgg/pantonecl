@@ -64,26 +64,54 @@
   transition: all 0.2s ease;
 }
 
-.et-rail-arrow:hover,
-.et-rail-arrow:focus-visible {
+.et-rail-arrow:hover:not(:disabled),
+.et-rail-arrow:focus-visible:not(:disabled) {
   color: var(--ink);
   border-color: var(--ink);
 }
 
-.et-track {
+.et-track-window {
   position: relative;
+  height: 24rem; /* Desktop height for 3 vertical slots */
+  padding-left: 1rem;
+  overflow: hidden;
+}
+
+.et-track-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(calc(var(--translate-idx) * -33.333%));
+  height: 100%;
   padding-left: 1.75rem;
+}
+
+.et-slot {
+  flex: 0 0 33.333%;
+  display: flex;
+  align-items: center; /* Vertically centered */
+  position: relative;
+  animation: etFadeIn 0.3s ease;
 }
 
 .et-track-bg {
   position: absolute;
+  left: 5px;
+  width: 2px;
   background: var(--border);
+  top: 16.6666%;
+  height: calc((var(--timeline-length) + 1) * 33.3333%);
 }
 
 .et-track-fill {
   position: absolute;
+  left: 5px;
+  width: 2px;
   background: var(--accent);
-  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s cubic-bezier(0.4, 0, 0.2, 1), left 0.5s cubic-bezier(0.4, 0, 0.2, 1), top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  top: 16.6666%;
+  height: calc((var(--translate-idx) + 1) * 33.3333%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .et-node {
@@ -92,19 +120,15 @@
   position: relative;
   width: 100%;
   cursor: pointer;
-  padding: 0 0 2.1rem;
   text-align: left;
-}
-
-.et-node:last-child {
-  padding-bottom: 0;
 }
 
 .et-node::before {
   content: "";
   position: absolute;
   left: -1.75rem;
-  top: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -113,11 +137,19 @@
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.et-node.is-active::before {
+.et-node.is-active::before,
+.et-node.is-completed::before {
   border-color: var(--accent);
   background: var(--accent);
+}
+
+.et-node.is-active::before {
   box-shadow: 0 0 0 4px var(--accent-soft);
-  transform: scale(1.15);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.et-node.is-completed::before {
+  transform: translateY(-50%);
 }
 
 .et-node:focus-visible::before {
@@ -131,6 +163,7 @@
   font-size: 1.15rem;
   color: var(--muted);
   transition: color 0.3s ease;
+  display: block;
 }
 
 .et-node.is-active .et-node-year {
@@ -145,6 +178,7 @@
   margin-top: 0.15rem;
   line-height: 1.4;
   transition: color 0.3s ease;
+  display: block;
 }
 
 .et-node.is-active .et-node-title {
@@ -335,34 +369,63 @@
     gap: 0.5rem;
   }
 
-  .et-track {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
+  .et-track-window {
+    height: auto;
+    width: 100%;
     padding-left: 0;
-    padding-top: 1.5rem;
-    padding-bottom: 1rem;
-    gap: 1.5rem;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    overflow: hidden;
   }
 
-  .et-track::-webkit-scrollbar {
-    display: none;
+  .et-track-inner {
+    flex-direction: row;
+    transform: translateX(calc(var(--translate-idx) * -33.333%));
+    padding-left: 0;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    width: 100%;
+  }
+
+  .et-track-bg, .et-track-fill {
+    top: 21px; /* 3rem padding = 48px. dot is -32px from node. 48-32 = 16px. center is 22px. line is 2px high -> top 21px */
+    height: 2px;
+  }
+
+  .et-track-bg {
+    left: 16.6666%;
+    width: calc((var(--timeline-length) + 1) * 33.3333%);
+  }
+
+  .et-track-fill {
+    left: 16.6666%;
+    width: calc((var(--translate-idx) + 1) * 33.3333%);
+  }
+
+  .et-slot {
+    justify-content: center;
+    align-items: flex-start;
   }
 
   .et-node {
-    padding: 2rem 0 0 0;
-    min-width: 6rem;
-    width: auto;
     text-align: center;
-    flex: 1 0 auto; 
   }
 
   .et-node::before {
     left: 50%;
-    top: 0;
-    margin-left: -6px;
+    top: -2rem; 
+    transform: translateX(-50%);
+  }
+
+  .et-node.is-active::before,
+  .et-node.is-completed::before {
+    /* bg/border handled by base classes */
+  }
+
+  .et-node.is-active::before {
+    transform: translateX(-50%) scale(1.15);
+  }
+
+  .et-node.is-completed::before {
+    transform: translateX(-50%);
   }
 
   /* Desactivar el sticky de content-area en móvil para evitar solapamientos con el rail */
