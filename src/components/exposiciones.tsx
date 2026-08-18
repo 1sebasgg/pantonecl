@@ -60,7 +60,7 @@ export function ExposicionesTimeline() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
   const activeNode = timeline[activeIndex];
-  const currentImage = activeNode.images[currentImageIndex];
+  const currentImage = activeImages[currentImageIndex];
 
   const handleNodeClick = (idx: number) => {
     setActiveIndex(idx);
@@ -68,11 +68,11 @@ export function ExposicionesTimeline() {
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev === activeNode.images.length - 1 ? 0 : prev + 1));
+    setCurrentImageIndex((prev) => (prev === activeImages.length - 1 ? 0 : prev + 1));
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev === 0 ? activeNode.images.length - 1 : prev - 1));
+    setCurrentImageIndex((prev) => (prev === 0 ? activeImages.length - 1 : prev - 1));
   };
 
   const handleScrollRail = (direction: number) => {
@@ -215,7 +215,7 @@ export function ExposicionesTimeline() {
               />
               <div className="et-carousel-gradient" />
 
-              {activeNode.images.length > 1 && (
+              {activeImages.length > 1 && (
                 <>
                   <button
                     onClick={prevImage}
@@ -255,7 +255,7 @@ export function ExposicionesTimeline() {
                   </button>
 
                   <div className="et-dots">
-                    {activeNode.images.map((_, idx) => (
+                    {activeImages.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => setCurrentImageIndex(idx)}
