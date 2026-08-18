@@ -1,33 +1,23 @@
-## Navegación superior + secciones nuevas
+# Mejorar el botón "Ver más" del hero
 
-Agregar una barra de navegación fija arriba a la derecha (estilo Midgard de la referencia), con la marca "PANTONE" a la izquierda y 4 enlaces a la derecha en una tipografía serif similar a la actual (Fraunces, en versalitas y tracking amplio).
+## Problema
 
-### Enlaces y comportamiento
-1. **Quienes somos** → nueva ruta `/estudio` con una página breve sobre el estudio (misión, enfoque, equipo — texto placeholder editable).
-2. **Exposiciones** → nueva ruta `/exposiciones` con una **línea de tiempo vertical** de exposiciones (año + título + descripción, ~5 hitos placeholder).
-3. **Casos** → enlaza a `/#proyectos` (scroll suave a la sección de proyectos ya existente en el home).
-4. **Contacto** → scroll suave al footer (`/#contacto`).
+El bloque de texto del hero usa un duplicado invisible del texto completo para "reservar" espacio. Eso hace que, esté expandido o colapsado, siempre ocupe la altura del texto largo: al colapsar queda un hueco vacío debajo, y al expandir el movimiento se siente rígido.
 
-### Footer ampliado (contacto)
-Reemplazar el footer minimal actual por uno con:
-- Columna izquierda: marca PANTONE + tagline.
-- Columna central: dirección / ubicación (ej. "Santiago, CL"), teléfono, email.
-- Columna derecha: redes sociales / horario.
-- Con `id="contacto"` para que el enlace del nav lleve ahí.
+## Qué se va a hacer
 
-### Detalles de diseño
-- Nav fija (`position: fixed`) con fondo translúcido y blur, se mantiene visible al hacer scroll.
-- Sobre el hero (imagen oscura) el texto del nav va en `text-primary-foreground`; al scrollear cambia a fondo claro con texto oscuro.
-- Tipografía: Fraunces para la marca y los enlaces, uppercase con `tracking-[0.2em]`, tamaño pequeño (~12–13px) — coincide con el look editorial de la referencia.
-- Responsive: en móvil los enlaces colapsan en un menú hamburguesa.
+1. Eliminar el bloque espaciador invisible del hero, para que el texto ocupe solo el alto real de su contenido. Sin hueco al colapsar.
+2. Que el hero crezca/encoja suavemente en vez de saltar: la sección conserva su alto mínimo y el contenido se ancla abajo, así el cambio de altura se ve como una expansión natural sobre la imagen.
+3. Rediseñar el botón para que sea más estético y menos "pegado" al texto:
+   - Alineado a la izquierda junto al párrafo (no suelto a la derecha).
+   - Estilo minimal editorial acorde al sitio: texto en mayúsculas con tracking amplio, línea inferior fina que se extiende al pasar el mouse, chevron que rota 180° al expandir.
+   - Etiquetas "Ver más" / "Ver menos" iguales, con transición de opacidad para que el cambio de texto no parpadee.
+4. Suavizar la aparición del párrafo extendido: fade + leve desplazamiento vertical sincronizado con la animación de altura, con una curva de easing suave.
 
-### Archivos afectados
-- **Nuevo** `src/components/site-nav.tsx` — barra de navegación.
-- **Nuevo** `src/components/site-footer.tsx` — footer con contacto.
-- **Nuevo** `src/routes/estudio.tsx` — página "Quiénes somos".
-- **Nuevo** `src/routes/exposiciones.tsx` — línea de tiempo.
-- **Editar** `src/routes/__root.tsx` — montar `<SiteNav />` global sobre el `<Outlet />`.
-- **Editar** `src/routes/index.tsx` — quitar el footer inline y usar `<SiteFooter />`; añadir `id="contacto"`.
+## Detalles técnicos
 
-### Preguntas menores
-Los datos de contacto (dirección, email, teléfono) y el contenido de "Quiénes somos" / "Exposiciones" los pongo como placeholder editable, salvo que quieras dármelos ahora.
+- Archivo: `src/components/hero.tsx`.
+- Se quita el `grid` de una celda con el clon invisible y se deja un contenedor en flujo normal.
+- La expansión sigue usando la técnica `grid-rows-[0fr] -> grid-rows-[1fr]` con `overflow-hidden`, con `transition-[grid-template-rows,opacity]` y duración ~500ms.
+- La sección mantiene `min-h-[88vh]` con `items-end`, por lo que el crecimiento empuja hacia arriba y no deja espacio muerto.
+- Solo cambios de presentación; no se toca texto ni lógica de otras secciones.
