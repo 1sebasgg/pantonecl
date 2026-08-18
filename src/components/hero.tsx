@@ -48,8 +48,13 @@ export function Hero() {
             }`}
           >
             <div className="overflow-hidden">
-              <div className="pb-4">
+              <div className="pb-1">
                 <p>
+                  PANTONE_nuestro patrimonio futuro es una instalación itinerante diseñada para adaptarse a
+                  distintos edificios y espacios, en la que se invita al público a interactuar y reflexionar
+                  en torno al concepto de Patrimonio Futuro.
+                </p>
+                <p className="mt-4">
                   Una serie de maquetas de colores realizadas con la técnica de papel pop up representan una
                   selección de obras contemporáneas construidas por arquitectas y arquitectos chilenos a lo
                   largo de todo el territorio nacional. Son obras que han propuesto, experimentado y
@@ -64,12 +69,6 @@ export function Hero() {
             </div>
           </div>
 
-          <p>
-            PANTONE_nuestro patrimonio futuro es una instalación itinerante diseñada para adaptarse a
-            distintos edificios y espacios, en la que se invita al público a interactuar y reflexionar
-            en torno al concepto de Patrimonio Futuro.
-            {!isExpanded && <span className="animate-in fade-in duration-300">...</span>}
-          </p>
 
           <button
             onClick={() => setIsExpanded(!isExpanded)}
