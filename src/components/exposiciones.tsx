@@ -60,6 +60,7 @@ export function ExposicionesTimeline() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
   const activeNode = timeline[activeIndex];
+  const activeImages = activeNode?.images ?? [];
   const currentImage = activeImages[currentImageIndex];
 
   const handleNodeClick = (idx: number) => {
