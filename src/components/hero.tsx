@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, ChevronDown } from "lucide-react";
+import { ArrowDown, ChevronDown, ChevronUp } from "lucide-react";
 import portadaImage from "@/assets/portada.jpg";
 import { Link, useRouterState } from "@tanstack/react-router";
 
@@ -91,7 +91,7 @@ export function Hero() {
             <span className="relative py-0.5">
               {isExpanded ? "Ver menos" : "Ver más"}
             </span>
-            <ChevronDown
+            <ChevronUp
               className={`h-3.5 w-3.5 transition-transform duration-500 ease-out ${isExpanded ? "rotate-180" : "group-hover:translate-y-0.5"
                 }`}
             />
