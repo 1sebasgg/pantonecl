@@ -18,7 +18,7 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="relative flex min-h-[88vh] items-end overflow-hidden">
+    <section id="hero" className="relative min-h-[88vh] overflow-hidden">
       <img
         src={buildingImage}
         alt="Edificio de arquitectura moderna en hormigón y cristal"
@@ -28,30 +28,27 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-black/20" />
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
+
+      {/* Título fijo arriba */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-10">
         <h1 className="mt-4 max-w-3xl font-serif text-5xl tracking-tight text-primary-foreground pt-16 md:text-8xl">
           PANTONE
         </h1>
         <p className="mt-4 max-w-3xl font-serif italic text-5xl leading-[1.05] tracking-tight text-primary-foreground md:text-6xl">
           Nuestro patrimonio futuro
         </p>
-        <div className="mt-6 max-w-3xl text-base leading-relaxed text-primary-foreground/85">
-          <p>
-            PANTONE_nuestro patrimonio futuro es una instalación itinerante diseñada para adaptarse a
-            distintos edificios y espacios, en la que se invita al público a interactuar y reflexionar
-            en torno al concepto de Patrimonio Futuro.
-            {!isExpanded && <span className="animate-in fade-in duration-300">...</span>}
-          </p>
+      </div>
 
+      {/* Bloque inferior: crece hacia arriba */}
+      <div className="absolute inset-x-0 bottom-0 z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
+        <div className="max-w-3xl text-base leading-relaxed text-primary-foreground/85">
           <div
-            className={`grid transition-[grid-template-rows,opacity,transform] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-              isExpanded
-                ? "grid-rows-[1fr] opacity-100 translate-y-0"
-                : "grid-rows-[0fr] opacity-0 -translate-y-1"
+            className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+              isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
             }`}
           >
             <div className="overflow-hidden">
-              <div className="pt-4">
+              <div className="pb-4">
                 <p>
                   Una serie de maquetas de colores realizadas con la técnica de papel pop up representan una
                   selección de obras contemporáneas construidas por arquitectas y arquitectos chilenos a lo
@@ -66,6 +63,13 @@ export function Hero() {
               </div>
             </div>
           </div>
+
+          <p>
+            PANTONE_nuestro patrimonio futuro es una instalación itinerante diseñada para adaptarse a
+            distintos edificios y espacios, en la que se invita al público a interactuar y reflexionar
+            en torno al concepto de Patrimonio Futuro.
+            {!isExpanded && <span className="animate-in fade-in duration-300">...</span>}
+          </p>
 
           <button
             onClick={() => setIsExpanded(!isExpanded)}
