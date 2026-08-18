@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowDown, ChevronDown } from "lucide-react";
 import portadaImage from "@/assets/portada.jpg";
 import { Link, useRouterState } from "@tanstack/react-router";
 
