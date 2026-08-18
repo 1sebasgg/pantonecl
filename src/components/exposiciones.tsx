@@ -17,66 +17,40 @@ interface TimelineImage {
 }
 
 interface TimelineItem {
-  year: string;
-  title: string;
-  place: string;
-  text: string;
-  images: TimelineImage[];
+  year?: string;
+  title?: string;
+  place?: string;
+  text?: string;
+  images?: TimelineImage[];
 }
 
 const timeline: TimelineItem[] = [
   {
-    year: "2022",
-    title: "Casa-torre",
-    place: "Centro Cultural GAM, Santiago",
-    text: "Recorrido por la obra de Pezo von Ellrichshausen a través de sus casas verticales.",
+    year: "Mayo - 2026",
+    title: "Palacio Letelier Llona",
+    place: "Cienfuegos 51, Santiago, Región Metropolitana",
+    text: "Memoria.",
     images: [
       {
         id: 1,
         src: assetUrl(proyecto3Asset.url),
         alt: "Estructura vertical",
-        description: "Maqueta a escala de la estructura vertical principal.",
+        description: "Fotos por Rodrigo Santa María y Arantxa Chibey",
       },
     ],
   },
   {
-    year: "2024",
-    title: "Atacama · Territorio y memoria",
-    place: "Museo Regional de Atacama, Copiapó",
-    text: "Curaduría en torno a la obra de Max Núñez y su diálogo con el paisaje del desierto.",
+    year: "2026",
+    title: "Proximamente",
+    place: "",
+    text: "",
     images: [
       {
         id: 1,
         src: assetUrl(proyecto4Asset.url),
         alt: "Paisaje desértico",
-        description: "Montaje principal dialogando con la aridez del entorno.",
-      },
-      {
-        id: 2,
-        src: assetUrl(proyecto5Asset.url),
-        alt: "Montaje de obra",
-        description: "Estructuras ligeras suspendidas en la sala principal.",
-      },
-    ],
-  },
-  {
-    year: "2025",
-    title: "Sala de Maquetas",
-    place: "Palacio Pereira, Santiago",
-    text: "Muestra colectiva que reúne más de cien maquetas de arquitectura chilena contemporánea sobre el parquet del salón histórico.",
-    images: [
-      {
-        id: 1,
-        src: assetUrl(maquetaAsset.url),
-        alt: "Vista central de la sala",
-        description: "Vista general de las más de 100 maquetas expuestas sobre el parquet.",
-      },
-      {
-        id: 2,
-        src: assetUrl(proyecto1Asset.url),
-        alt: "Detalle de maqueta 1",
-        description: "Acercamiento a los detalles constructivos en madera.",
-      },
+        description: "",
+      }
     ],
   },
 ];
@@ -116,11 +90,10 @@ export function ExposicionesTimeline() {
   return (
     <section
       id="exposiciones-timeline"
-      className="et-section mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28"
+      className="et-section mx-auto max-w-7xl px-6 py-5 md:px-10 md:py-5"
       aria-label="Exposiciones — línea de tiempo interactiva"
     >
       <div className="et-inner">
-        <p className="text-eyebrow">Línea de tiempo</p>
         <h2 className="mt-4 text-section-title">Exposiciones</h2>
         <p className="text-lede mt-6">
           Un recorrido cronológico por las muestras que hemos curado y producido, desde
@@ -140,9 +113,23 @@ export function ExposicionesTimeline() {
                   onClick={() => handleScrollRail(-1)}
                   aria-label="Anterior"
                   disabled={activeIndex === 0}
-                  style={{ opacity: activeIndex === 0 ? 0.3 : 1, cursor: activeIndex === 0 ? 'default' : 'pointer' }}
+                  style={{
+                    opacity: activeIndex === 0 ? 0.3 : 1,
+                    cursor: activeIndex === 0 ? "default" : "pointer",
+                  }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
                 </button>
                 <button
                   type="button"
@@ -150,26 +137,42 @@ export function ExposicionesTimeline() {
                   onClick={() => handleScrollRail(1)}
                   aria-label="Siguiente"
                   disabled={activeIndex === timeline.length - 1}
-                  style={{ opacity: activeIndex === timeline.length - 1 ? 0.3 : 1, cursor: activeIndex === timeline.length - 1 ? 'default' : 'pointer' }}
+                  style={{
+                    opacity: activeIndex === timeline.length - 1 ? 0.3 : 1,
+                    cursor: activeIndex === timeline.length - 1 ? "default" : "pointer",
+                  }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
                 </button>
               </div>
             </div>
-            <div 
+            <div
               className="et-track-window"
-              style={{
-                "--timeline-length": timeline.length,
-                "--translate-idx": activeIndex,
-              } as React.CSSProperties}
+              style={
+                {
+                  "--timeline-length": timeline.length,
+                  "--translate-idx": activeIndex,
+                } as React.CSSProperties
+              }
             >
               <div className="et-track-inner">
                 <div className="et-track-bg" />
                 <div className="et-track-fill" />
-                
+
                 {/* Fantasma Inicial */}
                 <div className="et-slot" />
-                
+
                 {/* Nodos Reales */}
                 {timeline.map((item, idx) => (
                   <div key={idx} className="et-slot">
@@ -184,7 +187,7 @@ export function ExposicionesTimeline() {
                     </button>
                   </div>
                 ))}
-                
+
                 {/* Fantasma Final */}
                 <div className="et-slot" />
               </div>
@@ -194,9 +197,6 @@ export function ExposicionesTimeline() {
           {/* Columna Derecha: Información y Carrusel */}
           <div className="et-content-area">
             <div className="et-info-header">
-              <span className="text-eyebrow" style={{ display: "block", marginBottom: "0.5rem" }}>
-                Proyecto A{activeIndex + 1}
-              </span>
               <h2 className="et-info-title">{activeNode.title}</h2>
               <p className="et-info-place">
                 <span aria-hidden="true">📍</span>
@@ -222,7 +222,16 @@ export function ExposicionesTimeline() {
                     className="et-nav-btn prev"
                     aria-label="Imagen anterior"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="m15 18-6-6 6-6" />
                     </svg>
                   </button>
@@ -231,7 +240,16 @@ export function ExposicionesTimeline() {
                     className="et-nav-btn next"
                     aria-label="Siguiente imagen"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="m9 18 6-6-6-6" />
                     </svg>
                   </button>

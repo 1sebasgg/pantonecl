@@ -39,7 +39,7 @@ export function CasosSection() {
   const visibleCasos = filteredCasos.slice(0, visibleCount);
 
   return (
-    <section id="casos" className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
+    <section id="casos" className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-10">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-baseline justify-between border-b border-border pb-4 mb-10 gap-6">
         {/* Lado Izquierdo */}
@@ -57,8 +57,8 @@ export function CasosSection() {
               key={filter}
               onClick={() => handleFilterChange(filter)}
               className={`text-xs tracking-[0.1em] uppercase font-medium transition-colors ${activeFilter === filter
-                  ? "text-foreground border-b border-foreground pb-1"
-                  : "text-muted-foreground hover:text-foreground pb-1"
+                ? "text-foreground border-b border-foreground pb-1"
+                : "text-muted-foreground hover:text-foreground pb-1"
                 }`}
             >
               {filter}
