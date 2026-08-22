@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { ArrowDown, ChevronDown, ChevronUp } from "lucide-react";
-import portadaImage from "@/assets/portada.jpg";
 import { Link, useRouterState } from "@tanstack/react-router";
 
 export function Hero() {
-  const buildingImage = portadaImage;
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleScrollClick = (hash?: string) => {
@@ -19,7 +17,7 @@ export function Hero() {
   return (
     <section id="hero" className="relative min-h-[100dvh] overflow-hidden">
       <img
-        src={buildingImage}
+        src="portada.webp"
         alt="Edificio de arquitectura moderna en hormigón y cristal"
         width={1024}
         height={1280}
