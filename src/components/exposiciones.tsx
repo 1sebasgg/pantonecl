@@ -2,61 +2,9 @@ import React, { useState } from "react";
 
 import "./styles/exposiciones.css";
 
-import maquetaAsset from "@/assets/maqueta.jpg.asset.json";
-import proyecto5Asset from "@/assets/proyecto-5.jpg.asset.json";
-import proyecto4Asset from "@/assets/proyecto-4.jpg.asset.json";
-import proyecto3Asset from "@/assets/proyecto-3.jpg.asset.json";
-import proyecto1Asset from "@/assets/proyecto-1.jpg.asset.json";
-import { assetUrl } from "@/lib/asset-url";
-
-interface TimelineImage {
-  id: number;
-  src: string;
-  alt: string;
-  description?: string;
-}
-
-interface TimelineItem {
-  year?: string;
-  title?: string;
-  place?: string;
-  text?: string;
-  images?: TimelineImage[];
-}
-
-const timeline: TimelineItem[] = [
-  {
-    year: "Mayo - 2026",
-    title: "Palacio Letelier Llona",
-    place: "Cienfuegos 51, Santiago, Región Metropolitana",
-    text: "Memoria.",
-    images: [
-      {
-        id: 1,
-        src: assetUrl(proyecto3Asset.url),
-        alt: "Estructura vertical",
-        description: "Fotos por Rodrigo Santa María y Arantxa Chibey",
-      },
-    ],
-  },
-  {
-    year: "2026",
-    title: "Proximamente",
-    place: "",
-    text: "",
-    images: [
-      {
-        id: 1,
-        src: assetUrl(proyecto4Asset.url),
-        alt: "Paisaje desértico",
-        description: "",
-      }
-    ],
-  },
-];
-
+import { TIMELINE as timeline } from "@/data/timeline";
 export function ExposicionesTimeline() {
-  const [activeIndex, setActiveIndex] = useState<number>(1);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
   const activeNode = timeline[activeIndex];
@@ -78,7 +26,7 @@ export function ExposicionesTimeline() {
 
   const handleScrollRail = (direction: number) => {
     const newIdx = activeIndex + direction;
-    if (newIdx >= 0 && newIdx < timeline.length) {
+    if (newIdx >= 0 && newIdx < timeline.length && !timeline[newIdx].disabled) {
       handleNodeClick(newIdx);
     }
   };
@@ -113,10 +61,10 @@ export function ExposicionesTimeline() {
                   className="et-rail-arrow"
                   onClick={() => handleScrollRail(-1)}
                   aria-label="Anterior"
-                  disabled={activeIndex === 0}
+                  disabled={activeIndex === 0 || timeline[activeIndex - 1]?.disabled}
                   style={{
-                    opacity: activeIndex === 0 ? 0.3 : 1,
-                    cursor: activeIndex === 0 ? "default" : "pointer",
+                    opacity: activeIndex === 0 || timeline[activeIndex - 1]?.disabled ? 0.3 : 1,
+                    cursor: activeIndex === 0 || timeline[activeIndex - 1]?.disabled ? "default" : "pointer",
                   }}
                 >
                   <svg
@@ -137,10 +85,10 @@ export function ExposicionesTimeline() {
                   className="et-rail-arrow"
                   onClick={() => handleScrollRail(1)}
                   aria-label="Siguiente"
-                  disabled={activeIndex === timeline.length - 1}
+                  disabled={activeIndex === timeline.length - 1 || timeline[activeIndex + 1]?.disabled}
                   style={{
-                    opacity: activeIndex === timeline.length - 1 ? 0.3 : 1,
-                    cursor: activeIndex === timeline.length - 1 ? "default" : "pointer",
+                    opacity: activeIndex === timeline.length - 1 || timeline[activeIndex + 1]?.disabled ? 0.3 : 1,
+                    cursor: activeIndex === timeline.length - 1 || timeline[activeIndex + 1]?.disabled ? "default" : "pointer",
                   }}
                 >
                   <svg
@@ -182,6 +130,8 @@ export function ExposicionesTimeline() {
                       className={`et-node${idx === activeIndex ? " is-active" : ""}${idx < activeIndex ? " is-completed" : ""}`}
                       onClick={() => handleNodeClick(idx)}
                       aria-current={idx === activeIndex ? "true" : undefined}
+                      disabled={item.disabled}
+                      style={item.disabled ? { opacity: 0.5, cursor: "not-allowed" } : undefined}
                     >
                       <span className="et-node-year">{item.year}</span>
                       <span className="et-node-title">{item.title}</span>
@@ -271,8 +221,8 @@ export function ExposicionesTimeline() {
 
             {/* Descripción de la Imagen */}
             <div className="et-desc-box">
-              <p key={`desc-${currentImage.id}`} className="et-desc-text">
-                {currentImage.description || "Sin descripción disponible."}
+              <p className="et-desc-text">
+                {activeNode.imagesDescription || "Sin descripción disponible."}
               </p>
             </div>
           </div>

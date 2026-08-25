@@ -1,41 +1,6 @@
 import React, { useState } from "react";
 
-// Tipado para los casos
-interface Caso {
-  id: number;
-  title: string;
-  category: string;
-  image?: string;
-  year?: number;
-  location?: string;
-}
-
-// Datos de maquetas desde la carpeta public/casos
-const MOCK_CASOS: Caso[] = [
-  { id: 1, title: "Biblioteca Pública de Constitución", category: "Cultural", image: "/casos/Biblioteca Pública de Constitución.webp", year: 2015, location: "CONSTITUCIÓN, CL" },
-  { id: 2, title: "Casa Bahía Azul", category: "Casas", image: "/casos/Casa Bahía Azul.webp", year: 2014, location: "LOS VILOS, CL" },
-  { id: 3, title: "Casa Cien", category: "Casas", image: "/casos/Casa Cien.webp", year: 2011, location: "CONCEPCIÓN, CL" },
-  { id: 4, title: "Casa Do", category: "Casas", image: "/casos/Casa Do.webp", year: 2018, location: "ZAPALLAR, CL" },
-  { id: 5, title: "Casa Gago", category: "Casas", image: "/casos/Casa Gago.webp", year: 2020, location: "RANCAGUA, CL" },
-  { id: 6, title: "Casa Malalcahuello", category: "Casas", image: "/casos/Casa Malalcahuello.webp", year: 2021, location: "MALALCAHUELLO, CL" },
-  { id: 7, title: "Casa Oruga", category: "Casas", image: "/casos/Casa Oruga.webp", year: 2012, location: "LO BARNECHEA, CL" },
-  { id: 8, title: "Casa Prisma", category: "Casas", image: "/casos/Casa Prisma.webp", year: 2022, location: "PUCON, CL" },
-  { id: 9, title: "Casa de Vidrio", category: "Casas", image: "/casos/Casa de Vidrio.webp", year: 2019, location: "SANTIAGO, CL" },
-  { id: 10, title: "Casa el Cóndor", category: "Casas", image: "/casos/Casa el Cóndor.webp", year: 2023, location: "SANTIAGO, CL" },
-  { id: 11, title: "Centro Cultural Matucana 100", category: "Cultural", image: "/casos/Centro Cultural Matucana 100.webp", year: 2010, location: "SANTIAGO, CL" },
-  { id: 12, title: "Centro de Innovación Inés", category: "Institucional", image: "/casos/Centro de Innovación Inés.webp", year: 2021, location: "CONCEPCIÓN, CL" },
-  { id: 13, title: "Centro de innovación UC", category: "Institucional", image: "/casos/Centro de innovación UC.webp", year: 2014, location: "SANTIAGO, CL" },
-  { id: 14, title: "Duoc Eliodoro Yañez", category: "Institucional", image: "/casos/Duoc Eliodoro Yañez.webp", year: 2008, location: "SANTIAGO, CL" },
-  { id: 15, title: "Edificio BCI", category: "Edificios", image: "/casos/Edificio BCI.webp", year: 2016, location: "SANTIAGO, CL" },
-  { id: 16, title: "Edificio Banmédica", category: "Edificios", image: "/casos/Edificio Banmédica.webp", year: 2005, location: "SANTIAGO, CL" },
-  { id: 17, title: "Edificio Consorcio", category: "Edificios", image: "/casos/Edificio Consorcio.webp", year: 1993, location: "SANTIAGO, CL" },
-  { id: 18, title: "Edificio Cruz del Sur", category: "Edificios", image: "/casos/Edificio Cruz del Sur.webp", year: 2009, location: "SANTIAGO, CL" },
-  { id: 19, title: "Explora Patagonia", category: "Hotel", image: "/casos/Explora Patagonia.webp", year: 1993, location: "TORRES DEL PAINE, CL" },
-  { id: 20, title: "Pabellón Exposición de Sevilla", category: "Cultural", image: "/casos/Pabellón Exposición de Sevilla.webp", year: 1992, location: "SEVILLA, ES" },
-  { id: 21, title: "Parque cultural de Valparaíso", category: "Cultural", image: "/casos/Parque cultural de Valparaíso.webp", year: 2011, location: "VALPARAÍSO, CL" },
-  { id: 22, title: "Teatro Municipal de Constitución", category: "Cultural", image: "/casos/Teatro Municipal de Constitución.webp", year: 2015, location: "CONSTITUCIÓN, CL" },
-  { id: 23, title: "Torres Siamesas", category: "Edificios", image: "/casos/Torres Siamesas.webp", year: 2005, location: "SANTIAGO, CL" },
-];
+import { MOCK_CASOS } from "../data/casos";
 
 const FILTERS = ["Todos", "Casas", "Edificios", "Cultural", "Institucional", "Hotel"];
 
