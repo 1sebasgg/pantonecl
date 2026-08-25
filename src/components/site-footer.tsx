@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Instagram, Phone } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -14,8 +14,10 @@ export function SiteFooter() {
           <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Contacto</p>
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-start gap-2.5">
-              <MapPin className="mt-0.5 h-4 w-4 text-accent" />
-              <span>Av. Providencia 1234, Santiago, CL</span>
+              <Instagram className="mt-0.5 h-4 w-4 text-accent" />
+              <a href="https://www.instagram.com/arquitecturaenpapel_" target="_blank" rel="noopener noreferrer" className="hover:opacity-70">
+                @arquitecturaenpapel_
+              </a>
             </li>
             <li className="flex items-start gap-2.5">
               <Mail className="mt-0.5 h-4 w-4 text-accent" />
@@ -25,7 +27,7 @@ export function SiteFooter() {
             </li>
             <li className="flex items-start gap-2.5">
               <Phone className="mt-0.5 h-4 w-4 text-accent" />
-              <span>+56 2 2345 6789</span>
+              <span>+56 9 8904 2277</span>
             </li>
           </ul>
         </div>
