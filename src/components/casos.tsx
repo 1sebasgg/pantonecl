@@ -32,12 +32,12 @@ export function CasosSection() {
         </div>
 
         {/* Lado Derecho: Filtros */}
-        <div className="flex flex-wrap items-center gap-5 md:gap-8">
+        <div className="flex overflow-x-auto md:flex-wrap items-center gap-5 md:gap-8 pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {FILTERS.map((filter) => (
             <button
               key={filter}
               onClick={() => handleFilterChange(filter)}
-              className={`text-xs tracking-[0.1em] uppercase font-medium transition-colors ${activeFilter === filter
+              className={`whitespace-nowrap text-xs tracking-[0.1em] uppercase font-medium transition-colors ${activeFilter === filter
                 ? "text-foreground border-b border-foreground pb-1"
                 : "text-muted-foreground hover:text-foreground pb-1"
                 }`}

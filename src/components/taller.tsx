@@ -12,6 +12,35 @@ export function TallerSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const currentImage = IMAGES[currentImageIndex];
 
+  // Estados para swipe táctil
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStartImage = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMoveImage = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEndImage = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      nextImage();
+    }
+    if (isRightSwipe) {
+      prevImage();
+    }
+  };
+
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev === IMAGES.length - 1 ? 0 : prev + 1));
   };
@@ -40,6 +69,9 @@ export function TallerSection() {
         <div
           className="et-carousel-container"
           style={{ aspectRatio: "16/9", maxHeight: "80vh" }}
+          onTouchStart={onTouchStartImage}
+          onTouchMove={onTouchMoveImage}
+          onTouchEnd={onTouchEndImage}
         >
           {/* Fondo desenfocado */}
           <img

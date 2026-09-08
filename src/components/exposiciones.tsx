@@ -7,6 +7,12 @@ export function ExposicionesTimeline() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
+  // Estados para swipe táctil
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [timelineTouchStart, setTimelineTouchStart] = useState<number | null>(null);
+  const [timelineTouchEnd, setTimelineTouchEnd] = useState<number | null>(null);
+
   const activeNode = timeline[activeIndex];
   const activeImages = activeNode?.images ?? [];
   const currentImage = activeImages[currentImageIndex];
@@ -28,6 +34,56 @@ export function ExposicionesTimeline() {
     const newIdx = activeIndex + direction;
     if (newIdx >= 0 && newIdx < timeline.length && !timeline[newIdx].disabled) {
       handleNodeClick(newIdx);
+    }
+  };
+
+  // Manejadores de Swipe para el Carrusel de Imágenes
+  const minSwipeDistance = 50;
+
+  const onTouchStartImage = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMoveImage = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEndImage = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      nextImage();
+    }
+    if (isRightSwipe) {
+      prevImage();
+    }
+  };
+
+  // Manejadores de Swipe para la Línea de Tiempo (Móvil)
+  const onTouchStartTimeline = (e: React.TouchEvent) => {
+    setTimelineTouchEnd(null);
+    setTimelineTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMoveTimeline = (e: React.TouchEvent) => {
+    setTimelineTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEndTimeline = () => {
+    if (!timelineTouchStart || !timelineTouchEnd) return;
+    const distance = timelineTouchStart - timelineTouchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      handleScrollRail(1);
+    }
+    if (isRightSwipe) {
+      handleScrollRail(-1);
     }
   };
 
@@ -114,6 +170,9 @@ export function ExposicionesTimeline() {
                   "--translate-idx": activeIndex,
                 } as React.CSSProperties
               }
+              onTouchStart={onTouchStartTimeline}
+              onTouchMove={onTouchMoveTimeline}
+              onTouchEnd={onTouchEndTimeline}
             >
               <div className="et-track-inner">
                 <div className="et-track-bg" />
@@ -162,7 +221,12 @@ export function ExposicionesTimeline() {
             </div>
 
             {/* Carrusel */}
-            <div className="et-carousel-container">
+            <div 
+              className="et-carousel-container"
+              onTouchStart={onTouchStartImage}
+              onTouchMove={onTouchMoveImage}
+              onTouchEnd={onTouchEndImage}
+            >
               {/* Fondo desenfocado */}
               <img 
                 src={currentImage.src}
