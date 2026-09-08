@@ -8,10 +8,9 @@ export function CasosSection() {
   const [activeFilter, setActiveFilter] = useState<string>("Todos");
   const [visibleCount, setVisibleCount] = useState<number>(8);
 
-  // Función para cambiar de filtro y resetear el contador de visibles
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
-    setVisibleCount(8); // Al cambiar de categoría, volvemos a mostrar 8
+    setVisibleCount(8);
   };
 
   // Filtrar los casos según la categoría activa
