@@ -31,7 +31,7 @@ export function Hero() {
         <h1 className="mt-4 max-w-6xl font-serif text-4xl tracking-tight text-primary-foreground pt-16 md:text-6xl">
           PANTONE_<span className="italic">NUESTRO PATRIMONIO FUTURO</span>
         </h1>
-        <p className="mt-4 max-w-3xl font-serif italic text-4xl leading-[1.05] tracking-tight text-primary-foreground md:text-5xl">
+        <p className="mt-4 max-w-3xl font-serif italic text-3xl leading-[1.05] tracking-tight text-primary-foreground md:text-5xl">
           Arquitectura y patrimonio
         </p>
       </div>
