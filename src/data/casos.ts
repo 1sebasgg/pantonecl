@@ -130,9 +130,9 @@ export const MOCK_CASOS: Caso[] = [
   },
   {
     id: 16,
-    title: "Restaurant Mestizo",
+    title: "Restaurant el Mestizo",
     category: "Recreativo",
-    image: "/casos/Restaurant Mestizo.webp",
+    image: "/casos/Restaurant el Mestizo.webp",
     year: 2007,
     location: "Smiljan Radic, Vitacura"
   },
@@ -351,5 +351,21 @@ export const MOCK_CASOS: Caso[] = [
     image: "/casos/Museo Regional de Atacama.webp",
     year: 2024,
     location: "Max Núñez, Copiapó"
+  },
+  {
+    id: 44,
+    title: "Teatro Biobío",
+    category: "Cultural",
+    image: "/casos/Teatro Biobío.webp",
+    year: 2018,
+    location: "Smiljan Radic, Eduardo Castillo y Gabriela Medrano, Concepción"
+  },
+  {
+    id: 45,
+    title: "Universidad Adolfo Ibañez",
+    category: "Institucional",
+    image: "/casos/Universidad Adolfo Ibañez.webp",
+    year: 2002,
+    location: "José Cruz Ovalle, Peñalolén"
   },
 ];
