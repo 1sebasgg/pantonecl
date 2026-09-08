@@ -23,10 +23,10 @@ export function TallerSection() {
   return (
     <section id="taller" className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-10">
       <div className="flex flex-col gap-6 mb-10 border-b border-border pb-6">
-        <h2 className="text-section-title">El taller</h2>
+        <h2 className="text-section-title">Taller</h2>
         <div className="max-w-4xl space-y-4 text-foreground/90 leading-relaxed text-sm md:text-base">
           <p>
-            Junto a la exposición realizamos un taller de pop up, en el que te enseñamos a armar las
+            Junto a la exposición realizamos un taller de Papel pop up, en el que te enseñamos a armar las
             maquetas de las obras seleccionadas en la muestra.
           </p>
           <p>
@@ -37,18 +37,18 @@ export function TallerSection() {
       </div>
 
       <div className="w-full max-w-5xl mx-auto">
-        <div 
-          className="et-carousel-container" 
+        <div
+          className="et-carousel-container"
           style={{ aspectRatio: "16/9", maxHeight: "80vh" }}
         >
           {/* Fondo desenfocado */}
-          <img 
+          <img
             src={currentImage}
             alt=""
             aria-hidden="true"
-            className="et-carousel-blur-bg" 
+            className="et-carousel-blur-bg"
           />
-          
+
           <img
             src={currentImage}
             alt={`Taller foto ${currentImageIndex + 1}`}

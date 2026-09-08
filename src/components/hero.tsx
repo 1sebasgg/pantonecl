@@ -65,7 +65,7 @@ export function Hero() {
             <div className="overflow-hidden">
               <div className="pt-4">
                 <p>
-                  Una serie de maquetas de colores realizadas con la técnica de papel pop up
+                  Una serie de maquetas de colores realizadas con la técnica de Papel pop up
                   representan una selección de obras contemporáneas construidas por arquitectas
                   y arquitectos chilenos a lo largo de todo el territorio nacional. Son obras que
                   han propuesto, experimentado y consolidado maneras de hacer y entender la
