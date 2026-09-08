@@ -10,6 +10,7 @@ import { Hero } from "@/components/hero.tsx";
 import { Proyectos } from "@/components/proyectos.tsx";
 import { QuienesSomos } from "@/components/quienes-somos.tsx";
 import { ExposicionesTimeline } from "@/components/exposiciones.tsx";
+import { TallerSection } from "@/components/taller.tsx";
 import { CasosSection } from "@/components/casos.tsx";
 
 const buildingImage = assetUrl(fondoAsset.url);
@@ -41,6 +42,7 @@ function Portfolio() {
       <Hero />
       <QuienesSomos />
       <ExposicionesTimeline />
+      <TallerSection />
       <CasosSection />
       <SiteFooter />
     </main>

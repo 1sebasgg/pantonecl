@@ -238,12 +238,13 @@
 
 .et-carousel-blur-bg {
   position: absolute;
-  inset: -20px;
-  background-size: cover;
-  background-position: center;
+  top: -20px;
+  left: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  object-fit: cover;
   filter: blur(20px) brightness(0.6);
   z-index: 0;
-  transition: background-image 0.5s ease;
 }
 
 .et-carousel-img {

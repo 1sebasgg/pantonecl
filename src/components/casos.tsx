@@ -13,18 +13,15 @@ export function CasosSection() {
     setVisibleCount(8);
   };
 
-  // Filtrar los casos según la categoría activa
   const filteredCasos =
     activeFilter === "Todos"
       ? MOCK_CASOS
       : MOCK_CASOS.filter((c) => c.category.toLowerCase() === activeFilter.toLowerCase());
 
-  // Seleccionar solo la cantidad de casos visibles
   const visibleCasos = filteredCasos.slice(0, visibleCount);
 
   return (
     <section id="casos" className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-10">
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-baseline justify-between border-b border-border pb-4 mb-10 gap-6">
         {/* Lado Izquierdo */}
         <div className="flex items-baseline gap-4">
