@@ -39,12 +39,6 @@ export function SiteFooter() {
               </a>
             </li>
             <li className="flex items-start gap-2.5">
-              <Mail className="mt-0.5 h-4 w-4 text-accent" />
-              <a href="mailto:hola@pantone.studio" className="hover:opacity-70">
-                hola@pantone.studio
-              </a>
-            </li>
-            <li className="flex items-start gap-2.5">
               <Phone className="mt-0.5 h-4 w-4 text-accent" />
               <span>+56 9 8904 2277</span>
             </li>
