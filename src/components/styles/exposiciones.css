@@ -228,15 +228,30 @@
   aspect-ratio: 4/3;
   border-radius: 0.75rem;
   overflow: hidden;
-  background: #fff;
+  background: var(--bg);
   border: 1px solid var(--border);
   box-shadow: 0 10px 30px -18px rgba(33, 28, 23, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.et-carousel-blur-bg {
+  position: absolute;
+  inset: -20px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) brightness(0.6);
+  z-index: 0;
+  transition: background-image 0.5s ease;
 }
 
 .et-carousel-img {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  z-index: 1;
   animation: etFadeIn 0.5s ease;
 }
 
@@ -248,6 +263,7 @@
   height: 35%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
   pointer-events: none;
+  z-index: 2;
 }
 
 /* Controles */

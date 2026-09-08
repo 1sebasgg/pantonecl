@@ -45,12 +45,5 @@ export const TIMELINE: TimelineItem[] = [
     place: "",
     text: "",
     disabled: true,
-    images: [
-      {
-        id: 1,
-        src: assetUrl(proyecto4Asset.url),
-        alt: "Paisaje desértico",
-      }
-    ],
   },
 ];

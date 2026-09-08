@@ -163,6 +163,12 @@ export function ExposicionesTimeline() {
 
             {/* Carrusel */}
             <div className="et-carousel-container">
+              {/* Fondo desenfocado */}
+              <div 
+                className="et-carousel-blur-bg" 
+                style={{ backgroundImage: `url(${currentImage.src})` }}
+              />
+              
               <img
                 key={currentImage.id}
                 src={currentImage.src}
