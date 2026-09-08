@@ -1,7 +1,7 @@
 export interface Caso {
   id: number;
   title: string;
-  category: string;
+  category?: string;
   image?: string;
   year?: number;
   location?: string;
@@ -19,7 +19,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 2,
     title: "Casa Klotz",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Klotz.webp",
     year: 1991,
     location: "Mathias Klotz, Tongoy"
@@ -35,7 +35,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 4,
     title: "Condominio Golf de Manquehue",
-    category: "Casas",
+    category: "",
     image: "/casos/Condominio Golf de Manquehue.webp",
     year: 1993,
     location: "Cristián Undurraga, Ana Devés, Lo Barnechea"
@@ -43,7 +43,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 5,
     title: "Casa El Cóndor",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa el Cóndor.webp",
     year: 1993,
     location: "Christian de Groote + Camila del Fierro, Vitacura"
@@ -67,7 +67,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 8,
     title: "Casa Do",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Do.webp",
     year: 2001,
     location: "Cazú Zegers, Los Vilos"
@@ -75,7 +75,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 9,
     title: "Casa Bahía Azul",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Bahía Azul.webp",
     year: 2002,
     location: "Cecilia Puga, Los Vilos"
@@ -91,7 +91,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 11,
     title: "Casa Poli",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Poli.webp",
     year: 2005,
     location: "Pezo von Ellrichshausen, Concepción"
@@ -99,7 +99,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 12,
     title: "Torres Siamesas",
-    category: "Edificios",
+    category: "Institucional",
     image: "/casos/Torres Siamesas.webp",
     year: 2005,
     location: "Alejandro Aravena + Ricardo Torrejón + Charles Murray + Alfonso Montero, San Joaquín"
@@ -107,7 +107,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 13,
     title: "Edificio MOPTT La Serena",
-    category: "Edificios",
+    category: "Institucional",
     image: "/casos/Edificio MOPTT La Serena.webp",
     year: 2005,
     location: "Teodoro Fernández Arquitectos, La Serena"
@@ -123,7 +123,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 15,
     title: "Casa Chilena 1 y 2",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Chilena 1 y 2.webp",
     year: 2006,
     location: "Smiljan Radic, Rancagua"
@@ -131,7 +131,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 16,
     title: "Restaurant Mestizo",
-    category: "Institucional",
+    category: "Recreativo",
     image: "/casos/Restaurant Mestizo.webp",
     year: 2007,
     location: "Smiljan Radic, Vitacura"
@@ -163,7 +163,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 20,
     title: "Termas Geométricas",
-    category: "Cultural",
+    category: "Recreativo",
     image: "/casos/Termas Geométricas.webp",
     year: 2009,
     location: "Germán del Sol, Coñaripe"
@@ -179,7 +179,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 22,
     title: "Casa Cien",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Cien.webp",
     year: 2011,
     location: "Pezo Von Ellrichshausen, Concepción"
@@ -187,7 +187,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 23,
     title: "Casa MAVA",
-    category: "Casas",
+    category: "",
     image: "/casos/Casa MAVA.webp",
     year: 2011,
     location: "Pezo von Ellrichshausen, Zapallar"
@@ -203,7 +203,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 25,
     title: "Casa Oruga",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Oruga.webp",
     year: 2012,
     location: "Sebastián Irarrázaval, Lo Barnechea"
@@ -211,7 +211,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 26,
     title: "Casa Gago",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Gago.webp",
     year: 2013,
     location: "Pezo von Ellrichshausen, San Pedro de La Paz"
@@ -219,7 +219,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 27,
     title: "Casa para el Poema del Ángulo Recto",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa para el Poema del Ángulo Recto.webp",
     year: 2013,
     location: "Smiljan Radic, Vilches"
@@ -259,7 +259,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 32,
     title: "Cabaña Shangrila",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Cabaña Shangrila.webp",
     year: 2016,
     location: "DDRA + Magdalena Besomi, Pinto"
@@ -283,7 +283,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 35,
     title: "Casa de Vidrio",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa de Vidrio.webp",
     year: 2018,
     location: "Max Núñez, Pirque"
@@ -291,7 +291,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 36,
     title: "Casa H",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa H.webp",
     year: 2018,
     location: "Felipe Assadi Arquitectos, Zapallar"
@@ -307,7 +307,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 38,
     title: "Casa Ocho Quebradas",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Ocho Quebradas.webp",
     year: 2018,
     location: "ELEMENTAL, Los Vilos"
@@ -315,7 +315,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 39,
     title: "Casa Prisma",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Prisma.webp",
     year: 2018,
     location: "Smiljan Radic, Congullío"
@@ -323,7 +323,7 @@ export const MOCK_CASOS: Caso[] = [
   {
     id: 40,
     title: "Casa Malalcahuello",
-    category: "Casas",
+    category: "Viviendas",
     image: "/casos/Casa Malalcahuello.webp",
     year: 2019,
     location: "GAAA, Malalcahuello"

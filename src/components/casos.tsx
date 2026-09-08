@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { MOCK_CASOS } from "../data/casos";
 
-const FILTERS = ["Todos", "Casas", "Edificios", "Cultural", "Institucional", "Hotel"];
+const FILTERS = ["Todos", "Viviendas", "Recreativo", "Cultural", "Institucional", "Hotel"];
 
 export function CasosSection() {
   const [activeFilter, setActiveFilter] = useState<string>("Todos");
