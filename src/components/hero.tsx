@@ -28,11 +28,11 @@ export function Hero() {
 
       {/* Título fijo arriba */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-10">
-        <h1 className="mt-4 max-w-3xl font-serif text-5xl tracking-tight text-primary-foreground pt-16 md:text-8xl">
-          PANTONE
+        <h1 className="mt-4 max-w-6xl font-serif text-4xl tracking-tight text-primary-foreground pt-16 md:text-6xl">
+          PANTONE_<span className="italic">NUESTRO PATRIMONIO FUTURO</span>
         </h1>
-        <p className="mt-4 max-w-3xl font-serif italic text-5xl leading-[1.05] tracking-tight text-primary-foreground md:text-6xl">
-          Nuestro patrimonio futuro
+        <p className="mt-4 max-w-3xl font-serif italic text-4xl leading-[1.05] tracking-tight text-primary-foreground md:text-5xl">
+          Arquitectura y patrimonio
         </p>
       </div>
 
@@ -46,7 +46,7 @@ export function Hero() {
               className={`transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isExpanded ? "" : "line-clamp-2"
                 }`}
             >
-              PANTONE_nuestro patrimonio futuro es una instalación itinerante diseñada para
+              PANTONE_<span className="italic">NUESTRO PATRIMONIO FUTURO</span> es una instalación itinerante diseñada para
               adaptarse a distintos edificios y espacios, en la que se invita al público a
               interactuar y reflexionar en torno al concepto de Patrimonio Futuro.
             </p>

@@ -153,7 +153,12 @@ export function ExposicionesTimeline() {
                 <span aria-hidden="true">📍</span>
                 {activeNode.place}
               </p>
-              <p className="et-info-text">{activeNode.text}</p>
+              {activeNode.text && (
+                <p 
+                  className="et-info-text" 
+                  dangerouslySetInnerHTML={{ __html: activeNode.text }} 
+                />
+              )}
             </div>
 
             {/* Carrusel */}
