@@ -47,10 +47,10 @@ export function SiteNav() {
           to="/"
           hash=""
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`font-display text-xl font-semibold tracking-tight transition-colors ${solid ? "text-foreground" : "text-primary-foreground"
+          className={`font-display text-xl tracking-tight transition-colors ${solid ? "text-foreground" : "text-primary-foreground"
             }`}
         >
-          PANTONE
+          Arquitectura y patrimonio
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

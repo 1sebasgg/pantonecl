@@ -29,10 +29,10 @@ export function Hero() {
       {/* Título fijo arriba */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-10">
         <h1 className="mt-4 max-w-6xl font-serif text-4xl tracking-tight text-primary-foreground pt-16 md:text-6xl">
-          PANTONE_<span className="italic">NUESTRO PATRIMONIO FUTURO</span>
+          PANTONE_
         </h1>
-        <p className="mt-4 max-w-3xl font-serif italic text-3xl leading-[1.05] tracking-tight text-primary-foreground md:text-5xl">
-          Arquitectura y patrimonio
+        <p className="mt-4 max-w-3xl font-serif italic text-[1.4rem] leading-[1.05] tracking-tight text-primary-foreground md:text-[2.3rem]">
+          Nuestro Patrimonio Futuro
         </p>
       </div>
 

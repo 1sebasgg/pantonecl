@@ -13,10 +13,12 @@ export function CasosSection() {
     setVisibleCount(8);
   };
 
+  const availableCasos = MOCK_CASOS.filter((c) => c.visible !== false);
+
   const filteredCasos =
     activeFilter === "Todos"
-      ? MOCK_CASOS
-      : MOCK_CASOS.filter((c) => c.category.toLowerCase() === activeFilter.toLowerCase());
+      ? availableCasos
+      : availableCasos.filter((c) => c.category?.toLowerCase() === activeFilter.toLowerCase());
 
   const visibleCasos = filteredCasos.slice(0, visibleCount);
 

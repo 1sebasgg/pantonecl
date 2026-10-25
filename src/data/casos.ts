@@ -5,6 +5,7 @@ export interface Caso {
   image?: string;
   year?: number;
   location?: string;
+  visible?: boolean;
 }
 
 export const MOCK_CASOS: Caso[] = [
@@ -14,7 +15,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Edificios",
     image: "/casos/Edificio Consorcio.webp",
     year: 1990,
-    location: "Borja Huidobro + Enrique Browne, Las Condes"
+    location: "Borja Huidobro + Enrique Browne, Las Condes",
+    visible: true,
   },
   {
     id: 2,
@@ -22,7 +24,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Klotz.webp",
     year: 1991,
-    location: "Mathias Klotz, Tongoy"
+    location: "Mathias Klotz, Tongoy",
+    visible: false,
   },
   {
     id: 3,
@@ -30,7 +33,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Pabellón Exposición de Sevilla.webp",
     year: 1992,
-    location: "Germán del Sol + José Cruz, Sevilla"
+    location: "Germán del Sol + José Cruz, Sevilla",
+    visible: true,
   },
   {
     id: 4,
@@ -38,7 +42,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "",
     image: "/casos/Condominio Golf de Manquehue.webp",
     year: 1993,
-    location: "Cristián Undurraga, Ana Devés, Lo Barnechea"
+    location: "Cristián Undurraga, Ana Devés, Lo Barnechea",
+    visible: false,
   },
   {
     id: 5,
@@ -46,7 +51,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa el Cóndor.webp",
     year: 1993,
-    location: "Christian de Groote + Camila del Fierro, Vitacura"
+    location: "Christian de Groote + Camila del Fierro, Vitacura",
+    visible: true,
   },
   {
     id: 6,
@@ -54,7 +60,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Hotel",
     image: "/casos/Explora Patagonia.webp",
     year: 1995,
-    location: "Germán del Sol + José Cruz, Torres del Paine"
+    location: "Germán del Sol + José Cruz, Torres del Paine",
+    visible: true,
   },
   {
     id: 7,
@@ -62,7 +69,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Edificios",
     image: "/casos/Edificio Banmédica.webp",
     year: 1996,
-    location: "Borja Huidobro + A4 Arquitectos, Las Condes"
+    location: "Borja Huidobro + A4 Arquitectos, Las Condes",
+    visible: true,
   },
   {
     id: 8,
@@ -70,7 +78,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Do.webp",
     year: 2001,
-    location: "Cazú Zegers, Los Vilos"
+    location: "Cazú Zegers, Los Vilos",
+    visible: true,
   },
   {
     id: 9,
@@ -78,7 +87,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Bahía Azul.webp",
     year: 2002,
-    location: "Cecilia Puga, Los Vilos"
+    location: "Cecilia Puga, Los Vilos",
+    visible: true,
   },
   {
     id: 10,
@@ -86,7 +96,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Centro Cultural Matucana 100.webp",
     year: 2002,
-    location: "Martín Hurtado Arquitectos Asociados, Estación Central"
+    location: "Martín Hurtado Arquitectos Asociados, Estación Central",
+    visible: true,
   },
   {
     id: 11,
@@ -94,7 +105,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Poli.webp",
     year: 2005,
-    location: "Pezo von Ellrichshausen, Concepción"
+    location: "Pezo von Ellrichshausen, Concepción",
+    visible: false,
   },
   {
     id: 12,
@@ -102,7 +114,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Torres Siamesas.webp",
     year: 2005,
-    location: "Alejandro Aravena + Ricardo Torrejón + Charles Murray + Alfonso Montero, San Joaquín"
+    location: "Alejandro Aravena + Ricardo Torrejón + Charles Murray + Alfonso Montero, San Joaquín",
+    visible: true,
   },
   {
     id: 13,
@@ -110,7 +123,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Edificio MOPTT La Serena.webp",
     year: 2005,
-    location: "Teodoro Fernández Arquitectos, La Serena"
+    location: "Teodoro Fernández Arquitectos, La Serena",
+    visible: true,
   },
   {
     id: 14,
@@ -118,7 +132,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Municipalidad de Vitacura.webp",
     year: 2006,
-    location: "Iglesis Prat Arquitectos, Vitacura"
+    location: "Iglesis Prat Arquitectos, Vitacura",
+    visible: true,
   },
   {
     id: 15,
@@ -126,7 +141,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Chilena 1 y 2.webp",
     year: 2006,
-    location: "Smiljan Radic, Rancagua"
+    location: "Smiljan Radic, Rancagua",
+    visible: false,
   },
   {
     id: 16,
@@ -134,7 +150,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Recreativo",
     image: "/casos/Restaurant el Mestizo.webp",
     year: 2007,
-    location: "Smiljan Radic, Vitacura"
+    location: "Smiljan Radic, Vitacura",
+    visible: true,
   },
   {
     id: 17,
@@ -142,7 +159,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Duoc Eliodoro Yañez.webp",
     year: 2007,
-    location: "Sabbagh Arquitectos, Providencia"
+    location: "Sabbagh Arquitectos, Providencia",
+    visible: true,
   },
   {
     id: 18,
@@ -150,7 +168,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Centro Cultural Gabriela Mistral.webp",
     year: 2008,
-    location: "Cristián Fernández Arquitectos + Lateral Arquitectura y diseño, Santiago"
+    location: "Cristián Fernández Arquitectos + Lateral Arquitectura y diseño, Santiago",
+    visible: false,
   },
   {
     id: 19,
@@ -158,7 +177,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Capilla del Retiro.webp",
     year: 2009,
-    location: "Undurraga Devés Arquitectos, Calle Larga"
+    location: "Undurraga Devés Arquitectos, Calle Larga",
+    visible: true,
   },
   {
     id: 20,
@@ -166,7 +186,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Recreativo",
     image: "/casos/Termas Geométricas.webp",
     year: 2009,
-    location: "Germán del Sol, Coñaripe"
+    location: "Germán del Sol, Coñaripe",
+    visible: false,
   },
   {
     id: 21,
@@ -174,7 +195,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Edificios",
     image: "/casos/Edificio Cruz del Sur.webp",
     year: 2009,
-    location: "Izquierdo Lehmann Arquitectos, Las Condes"
+    location: "Izquierdo Lehmann Arquitectos, Las Condes",
+    visible: true,
   },
   {
     id: 22,
@@ -182,7 +204,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Cien.webp",
     year: 2011,
-    location: "Pezo Von Ellrichshausen, Concepción"
+    location: "Pezo Von Ellrichshausen, Concepción",
+    visible: true,
   },
   {
     id: 23,
@@ -190,7 +213,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "",
     image: "/casos/Casa MAVA.webp",
     year: 2011,
-    location: "Pezo von Ellrichshausen, Zapallar"
+    location: "Pezo von Ellrichshausen, Zapallar",
+    visible: false,
   },
   {
     id: 24,
@@ -198,7 +222,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Parque cultural de Valparaíso.webp",
     year: 2011,
-    location: "HLPS, Valparaíso"
+    location: "HLPS, Valparaíso",
+    visible: true,
   },
   {
     id: 25,
@@ -206,7 +231,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Oruga.webp",
     year: 2012,
-    location: "Sebastián Irarrázaval, Lo Barnechea"
+    location: "Sebastián Irarrázaval, Lo Barnechea",
+    visible: true,
   },
   {
     id: 26,
@@ -214,7 +240,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Gago.webp",
     year: 2013,
-    location: "Pezo von Ellrichshausen, San Pedro de La Paz"
+    location: "Pezo von Ellrichshausen, San Pedro de La Paz",
+    visible: true,
   },
   {
     id: 27,
@@ -222,7 +249,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa para el Poema del Ángulo Recto.webp",
     year: 2013,
-    location: "Smiljan Radic, Vilches"
+    location: "Smiljan Radic, Vilches",
+    visible: true,
   },
   {
     id: 28,
@@ -230,7 +258,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Pabellón de Cuatro Usos.webp",
     year: 2014,
-    location: "Pezo von Ellrichshausen, Concepción"
+    location: "Pezo von Ellrichshausen, Concepción",
+    visible: false,
   },
   {
     id: 29,
@@ -238,7 +267,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Centro de innovación UC.webp",
     year: 2014,
-    location: "Alejandro Aravena, San Joaquín"
+    location: "Alejandro Aravena, San Joaquín",
+    visible: true,
   },
   {
     id: 30,
@@ -246,7 +276,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Edificios",
     image: "/casos/Edificio BCI.webp",
     year: 2015,
-    location: "Borja Huidobro + A4 Arquitectos, Las Condes"
+    location: "Borja Huidobro + A4 Arquitectos, Las Condes",
+    visible: true,
   },
   {
     id: 31,
@@ -254,7 +285,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Biblioteca Pública de Constitución.webp",
     year: 2015,
-    location: "Sebastián Irarrázaval, Constitución"
+    location: "Sebastián Irarrázaval, Constitución",
+    visible: true,
   },
   {
     id: 32,
@@ -262,7 +294,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Cabaña Shangrila.webp",
     year: 2016,
-    location: "DDRA + Magdalena Besomi, Pinto"
+    location: "DDRA + Magdalena Besomi, Pinto",
+    visible: false,
   },
   {
     id: 33,
@@ -270,7 +303,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Municipalidad Lo Barnechea.webp",
     year: 2017,
-    location: "Gonzalo Mardones V Arquitectos, Lo Barnechea"
+    location: "Gonzalo Mardones V Arquitectos, Lo Barnechea",
+    visible: false,
   },
   {
     id: 34,
@@ -278,7 +312,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Parroquia Todos los Santos.webp",
     year: 2018,
-    location: "Gonzalo Mardones V Arquitectos, Talcahuano"
+    location: "Gonzalo Mardones V Arquitectos, Talcahuano",
+    visible: false,
   },
   {
     id: 35,
@@ -286,7 +321,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa de Vidrio.webp",
     year: 2018,
-    location: "Max Núñez, Pirque"
+    location: "Max Núñez, Pirque",
+    visible: true,
   },
   {
     id: 36,
@@ -294,7 +330,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa H.webp",
     year: 2018,
-    location: "Felipe Assadi Arquitectos, Zapallar"
+    location: "Felipe Assadi Arquitectos, Zapallar",
+    visible: false,
   },
   {
     id: 37,
@@ -302,7 +339,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Centro de Innovación Inés.webp",
     year: 2018,
-    location: "Pezo Von Ellrichshausen, Concepción"
+    location: "Pezo Von Ellrichshausen, Concepción",
+    visible: true,
   },
   {
     id: 38,
@@ -310,7 +348,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Ocho Quebradas.webp",
     year: 2018,
-    location: "ELEMENTAL, Los Vilos"
+    location: "ELEMENTAL, Los Vilos",
+    visible: false,
   },
   {
     id: 39,
@@ -318,7 +357,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Prisma.webp",
     year: 2018,
-    location: "Smiljan Radic, Congullío"
+    location: "Smiljan Radic, Congullío",
+    visible: true,
   },
   {
     id: 40,
@@ -326,7 +366,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Viviendas",
     image: "/casos/Casa Malalcahuello.webp",
     year: 2019,
-    location: "GAAA, Malalcahuello"
+    location: "GAAA, Malalcahuello",
+    visible: true,
   },
   {
     id: 41,
@@ -334,7 +375,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Facultad de Economía y Administración USACH.webp",
     year: 2021,
-    location: "Marsino Arquitectura, Santiago"
+    location: "Marsino Arquitectura, Santiago",
+    visible: false,
   },
   {
     id: 42,
@@ -342,7 +384,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Teatro Municipal de Constitución.webp",
     year: 2023,
-    location: "Alejandro Aravena + ELEMENTAL, Constitución"
+    location: "Alejandro Aravena + ELEMENTAL, Constitución",
+    visible: true,
   },
   {
     id: 43,
@@ -350,7 +393,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Museo Regional de Atacama.webp",
     year: 2024,
-    location: "Max Núñez, Copiapó"
+    location: "Max Núñez, Copiapó",
+    visible: true,
   },
   {
     id: 44,
@@ -358,7 +402,8 @@ export const MOCK_CASOS: Caso[] = [
     category: "Cultural",
     image: "/casos/Teatro Biobío.webp",
     year: 2018,
-    location: "Smiljan Radic, Eduardo Castillo y Gabriela Medrano, Concepción"
+    location: "Smiljan Radic, Eduardo Castillo y Gabriela Medrano, Concepción",
+    visible: true,
   },
   {
     id: 45,
@@ -366,6 +411,7 @@ export const MOCK_CASOS: Caso[] = [
     category: "Institucional",
     image: "/casos/Universidad Adolfo Ibañez.webp",
     year: 2002,
-    location: "José Cruz Ovalle, Peñalolén"
+    location: "José Cruz Ovalle, Peñalolén",
+    visible: true,
   },
 ];
