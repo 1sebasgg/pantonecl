@@ -110,9 +110,7 @@ export function ExposicionesTimeline() {
       <div className="et-inner">
         <h2 className="mt-4 text-section-title">Exposiciones</h2>
         <p className="text-lede mt-6 max-w-4xl">
-          Un recorrido cronológico por las muestras que hemos curado y producido, desde
-          instalaciones internacionales hasta exposiciones patrimoniales. Elige un año para
-          explorar.
+          Un recorrido cronológico por las muestras que hemos curado y producido.
         </p>
 
         <div className="et-grid">
