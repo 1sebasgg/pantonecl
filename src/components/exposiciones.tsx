@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./styles/exposiciones.css";
 
 import { TIMELINE as timeline } from "@/data/timeline";
 export function ExposicionesTimeline() {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
@@ -54,7 +63,7 @@ export function ExposicionesTimeline() {
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    
+
     if (isLeftSwipe) {
       nextImage();
     }
@@ -78,7 +87,7 @@ export function ExposicionesTimeline() {
     const distance = timelineTouchStart - timelineTouchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    
+
     if (isLeftSwipe) {
       handleScrollRail(1);
     }
@@ -95,12 +104,12 @@ export function ExposicionesTimeline() {
   return (
     <section
       id="exposiciones-timeline"
-      className="et-section mx-auto max-w-7xl px-6 py-5 md:px-10 md:py-5"
+      className="et-section mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-10"
       aria-label="Exposiciones — línea de tiempo interactiva"
     >
       <div className="et-inner">
         <h2 className="mt-4 text-section-title">Exposiciones</h2>
-        <p className="text-lede mt-6">
+        <p className="text-lede mt-6 max-w-4xl">
           Un recorrido cronológico por las muestras que hemos curado y producido, desde
           instalaciones internacionales hasta exposiciones patrimoniales. Elige un año para
           explorar.
@@ -213,28 +222,28 @@ export function ExposicionesTimeline() {
                 {activeNode.place}
               </p>
               {activeNode.text && (
-                <p 
-                  className="et-info-text" 
-                  dangerouslySetInnerHTML={{ __html: activeNode.text }} 
+                <p
+                  className="et-info-text"
+                  dangerouslySetInnerHTML={{ __html: activeNode.text }}
                 />
               )}
             </div>
 
             {/* Carrusel */}
-            <div 
-              className="et-carousel-container"
+            <div
+              className={`et-carousel-container${isMobile ? " is-portrait" : ""}`}
               onTouchStart={onTouchStartImage}
               onTouchMove={onTouchMoveImage}
               onTouchEnd={onTouchEndImage}
             >
               {/* Fondo desenfocado */}
-              <img 
+              <img
                 src={currentImage.src}
                 alt=""
                 aria-hidden="true"
-                className="et-carousel-blur-bg" 
+                className="et-carousel-blur-bg"
               />
-              
+
               <img
                 src={currentImage.src}
                 alt={currentImage.alt}

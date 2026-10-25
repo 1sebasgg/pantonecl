@@ -11,8 +11,7 @@
   font-family: var(--font-sans);
 }
 
-.et-inner {
-}
+.et-inner {}
 
 .et-grid {
   display: grid;
@@ -72,7 +71,8 @@
 
 .et-track-window {
   position: relative;
-  height: 24rem; /* Desktop height for 3 vertical slots */
+  height: 24rem;
+  /* Desktop height for 3 vertical slots */
   padding-left: 1rem;
   overflow: hidden;
 }
@@ -90,7 +90,8 @@
 .et-slot {
   flex: 0 0 33.333%;
   display: flex;
-  align-items: center; /* Vertically centered */
+  align-items: center;
+  /* Vertically centered */
   position: relative;
   animation: etFadeIn 0.3s ease;
 }
@@ -217,9 +218,10 @@
 }
 
 .et-info-text {
+  max-width: 56rem; /* equivale a max-w-4xl */
   font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--ink);
+  line-height: 1.7;
+  color: var(--color-muted-foreground);
 }
 
 .et-carousel-container {
@@ -234,6 +236,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.et-carousel-container.is-portrait {
+  aspect-ratio: 3/4;
+  max-width: 28rem;
+  margin-inline: auto;
 }
 
 .et-carousel-blur-bg {
@@ -357,6 +365,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -375,7 +384,7 @@
     top: 0;
     height: auto;
   }
-  
+
   .et-rail-header {
     margin-bottom: 0.5rem;
   }
@@ -401,8 +410,10 @@
     width: 100%;
   }
 
-  .et-track-bg, .et-track-fill {
-    top: 21px; /* 3rem padding = 48px. dot is -32px from node. 48-32 = 16px. center is 22px. line is 2px high -> top 21px */
+  .et-track-bg,
+  .et-track-fill {
+    top: 21px;
+    /* 3rem padding = 48px. dot is -32px from node. 48-32 = 16px. center is 22px. line is 2px high -> top 21px */
     height: 2px;
   }
 
@@ -427,7 +438,7 @@
 
   .et-node::before {
     left: 50%;
-    top: -2rem; 
+    top: -2rem;
     transform: translateX(-50%);
   }
 
@@ -452,6 +463,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .et-node::before,
   .et-track-bg,
   .et-track-fill,

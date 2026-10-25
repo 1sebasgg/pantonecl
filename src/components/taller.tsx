@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "@/components/styles/exposiciones.css";
 
 const IMAGES = [
@@ -9,6 +9,15 @@ const IMAGES = [
 ];
 
 export function TallerSection() {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const currentImage = IMAGES[currentImageIndex];
 
@@ -32,7 +41,7 @@ export function TallerSection() {
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    
+
     if (isLeftSwipe) {
       nextImage();
     }
@@ -52,13 +61,13 @@ export function TallerSection() {
   return (
     <section id="taller" className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-10">
       <div className="flex flex-col gap-6 mb-10 border-b border-border pb-6">
-        <h2 className="text-section-title">Taller</h2>
-        <div className="max-w-4xl space-y-4 text-foreground/90 leading-relaxed text-sm md:text-base">
-          <p>
+        <h2 className="mt-4 text-section-title">Taller</h2>
+        <div className="space-y-4">
+          <p className="text-lede mt-6 max-w-4xl">
             Junto a la exposición realizamos un taller de Papel pop up, en el que te enseñamos a armar las
             maquetas de las obras seleccionadas en la muestra.
           </p>
-          <p>
+          <p className="text-lede max-w-4xl">
             Al taller le interesa enseñar y que, a través de un ejercicio lúdico y de aprendizaje, las
             familias se lleven a sus casas obras arquitectónicas realizadas por ellos mismos; una invitación a reflexionar, conversar y a conocer nuestro patrimonio futuro.
           </p>
@@ -67,8 +76,8 @@ export function TallerSection() {
 
       <div className="w-full max-w-5xl mx-auto">
         <div
-          className="et-carousel-container"
-          style={{ aspectRatio: "16/9", maxHeight: "80vh" }}
+          className={`et-carousel-container${isMobile ? " is-portrait" : ""}`}
+          style={isMobile ? { maxHeight: "80vh" } : { aspectRatio: "16/9", maxHeight: "80vh" }}
           onTouchStart={onTouchStartImage}
           onTouchMove={onTouchMoveImage}
           onTouchEnd={onTouchEndImage}

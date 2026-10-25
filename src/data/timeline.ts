@@ -35,8 +35,6 @@ export const TIMELINE: TimelineItem[] = [
       { id: 7, src: "/exposiciones/letelier/palacio-letelier-7.webp", alt: "Palacio Letelier Llona 7" },
       { id: 8, src: "/exposiciones/letelier/palacio-letelier-8.webp", alt: "Palacio Letelier Llona 8" },
       { id: 9, src: "/exposiciones/letelier/palacio-letelier-9.webp", alt: "Palacio Letelier Llona 9" },
-      { id: 10, src: "/exposiciones/letelier/palacio-letelier-10.webp", alt: "Palacio Letelier Llona 10" },
-      { id: 11, src: "/exposiciones/letelier/palacio-letelier-11.webp", alt: "Palacio Letelier Llona 11" },
     ],
   },
   {
