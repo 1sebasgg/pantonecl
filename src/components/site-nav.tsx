@@ -25,11 +25,12 @@ export function SiteNav() {
   const solid = scrolled || !isHome;
 
   // NUEVA FUNCIÓN: Fuerza el scroll al elemento saltándose la limitación del router
-  const handleScrollClick = (hash?: string) => {
-    if (hash) {
+  const handleScrollClick = (e: React.MouseEvent, hash?: string) => {
+    if (hash && isHome) {
       const element = document.getElementById(hash);
       if (element) {
-        // Hacemos que el navegador haga scroll hacia el ID suavemente
+        // Evitamos que el router navegue (el hash repetido no dispara nada) y scrolleamos a mano
+        e.preventDefault();
         element.scrollIntoView({ behavior: "smooth" });
       }
     }
@@ -46,7 +47,13 @@ export function SiteNav() {
         <Link
           to="/"
           hash=""
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={(e) => {
+            if (isHome) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+            setOpen(false);
+          }}
           className={`font-display text-xl tracking-tight transition-colors ${solid ? "text-foreground" : "text-primary-foreground"
             }`}
         >
@@ -60,7 +67,7 @@ export function SiteNav() {
               to={l.to}
               hash={l.hash}
               // Agregamos el onClick aquí para escritorio
-              onClick={() => handleScrollClick(l.hash)}
+              onClick={(e) => handleScrollClick(e, l.hash)}
               className={`font-display text-[13px] uppercase tracking-[0.22em] transition-opacity hover:opacity-60 ${solid ? "text-foreground" : "text-primary-foreground"
                 }`}
             >
@@ -87,7 +94,7 @@ export function SiteNav() {
                 to={l.to}
                 hash={l.hash}
                 // Agregamos el onClick aquí para móviles
-                onClick={() => handleScrollClick(l.hash)}
+                onClick={(e) => handleScrollClick(e, l.hash)}
                 className="py-3 font-display text-sm uppercase tracking-[0.22em] text-foreground"
               >
                 {l.label}

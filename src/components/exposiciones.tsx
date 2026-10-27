@@ -195,7 +195,21 @@ export function ExposicionesTimeline() {
             <div className="et-info-header">
               <h2 className="et-info-title">{activeNode.title}</h2>
               <p className="et-info-place">
-                <span aria-hidden="true">📍</span>
+                <svg
+                  aria-hidden="true"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ marginRight: "0.1em", verticalAlign: "-2px", flexShrink: 0 }}
+                >
+                  <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" />
+                  <circle cx="12" cy="9.5" r="2.5" />
+                </svg>
                 {activeNode.place}
               </p>
               {activeNode.text && (
