@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useCarouselSwipe } from "@/components/useCarouselSwipe";
 import "@/components/styles/exposiciones.css";
 
 const IMAGES = [
@@ -19,36 +20,12 @@ export function TallerSection() {
   }, []);
 
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const currentImage = IMAGES[currentImageIndex];
 
-  // Estados para swipe táctil
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  const minSwipeDistance = 50;
-
-  const onTouchStartImage = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMoveImage = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEndImage = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      nextImage();
-    }
-    if (isRightSwipe) {
-      prevImage();
-    }
-  };
+  const swipe = useCarouselSwipe({
+    count: IMAGES.length,
+    index: currentImageIndex,
+    setIndex: setCurrentImageIndex,
+  });
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev === IMAGES.length - 1 ? 0 : prev + 1));
@@ -78,24 +55,32 @@ export function TallerSection() {
         <div
           className={`et-carousel-container${isMobile ? " is-portrait" : ""}`}
           style={isMobile ? { maxHeight: "80vh" } : { aspectRatio: "16/9", maxHeight: "80vh" }}
-          onTouchStart={onTouchStartImage}
-          onTouchMove={onTouchMoveImage}
-          onTouchEnd={onTouchEndImage}
+          {...swipe.handlers}
         >
-          {/* Fondo desenfocado */}
-          <img
-            src={currentImage}
-            alt=""
-            aria-hidden="true"
-            className="et-carousel-blur-bg"
-          />
-
-          <img
-            src={currentImage}
-            alt={`Taller foto ${currentImageIndex + 1}`}
-            className="et-carousel-img"
-          />
+          <div
+            className={`et-carousel-track${swipe.dragging ? " is-dragging" : ""}`}
+            style={{ "--slide-index": currentImageIndex, "--drag-x": `${swipe.dragX}px` } as React.CSSProperties}
+          >
+            {IMAGES.map((src, idx) => (
+              <div className="et-carousel-slide" key={src}>
+                <img src={src} alt="" aria-hidden="true" className="et-carousel-blur-bg" loading="eager" decoding="async" draggable={false} />
+                <img
+                  src={src}
+                  alt={`Taller foto ${idx + 1}`}
+                  className="et-carousel-img"
+                  loading="eager"
+                  decoding="async"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
           <div className="et-carousel-gradient" />
+          {IMAGES.length > 1 && (
+            <div className="et-counter" aria-live="polite">
+              {currentImageIndex + 1}/{IMAGES.length}
+            </div>
+          )}
 
           {IMAGES.length > 1 && (
             <>

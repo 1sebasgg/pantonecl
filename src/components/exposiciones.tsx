@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import { useCarouselSwipe } from "./useCarouselSwipe";
 import "./styles/exposiciones.css";
 
 import { TIMELINE as timeline } from "@/data/timeline";
@@ -16,15 +17,18 @@ export function ExposicionesTimeline() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
-  // Estados para swipe táctil
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  // Estados para swipe táctil (línea de tiempo)
   const [timelineTouchStart, setTimelineTouchStart] = useState<number | null>(null);
   const [timelineTouchEnd, setTimelineTouchEnd] = useState<number | null>(null);
 
   const activeNode = timeline[activeIndex];
   const activeImages = activeNode?.images ?? [];
-  const currentImage = activeImages[currentImageIndex];
+
+  const swipe = useCarouselSwipe({
+    count: activeImages.length,
+    index: currentImageIndex,
+    setIndex: setCurrentImageIndex,
+  });
 
   const handleNodeClick = (idx: number) => {
     setActiveIndex(idx);
@@ -46,33 +50,8 @@ export function ExposicionesTimeline() {
     }
   };
 
-  // Manejadores de Swipe para el Carrusel de Imágenes
-  const minSwipeDistance = 50;
-
-  const onTouchStartImage = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMoveImage = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEndImage = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      nextImage();
-    }
-    if (isRightSwipe) {
-      prevImage();
-    }
-  };
-
   // Manejadores de Swipe para la Línea de Tiempo (Móvil)
+  const minSwipeDistance = 50;
   const onTouchStartTimeline = (e: React.TouchEvent) => {
     setTimelineTouchEnd(null);
     setTimelineTouchStart(e.targetTouches[0].clientX);
@@ -230,24 +209,32 @@ export function ExposicionesTimeline() {
             {/* Carrusel */}
             <div
               className={`et-carousel-container${isMobile ? " is-portrait" : ""}`}
-              onTouchStart={onTouchStartImage}
-              onTouchMove={onTouchMoveImage}
-              onTouchEnd={onTouchEndImage}
+              {...swipe.handlers}
             >
-              {/* Fondo desenfocado */}
-              <img
-                src={currentImage.src}
-                alt=""
-                aria-hidden="true"
-                className="et-carousel-blur-bg"
-              />
-
-              <img
-                src={currentImage.src}
-                alt={currentImage.alt}
-                className="et-carousel-img"
-              />
+              <div
+                className={`et-carousel-track${swipe.dragging ? " is-dragging" : ""}`}
+                style={{ "--slide-index": currentImageIndex, "--drag-x": `${swipe.dragX}px` } as React.CSSProperties}
+              >
+                {activeImages.map((img) => (
+                  <div className="et-carousel-slide" key={img.src}>
+                    <img src={img.src} alt="" aria-hidden="true" className="et-carousel-blur-bg" loading="eager" decoding="async" draggable={false} />
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="et-carousel-img"
+                      loading="eager"
+                      decoding="async"
+                      draggable={false}
+                    />
+                  </div>
+                ))}
+              </div>
               <div className="et-carousel-gradient" />
+              {activeImages.length > 1 && (
+                <div className="et-counter" aria-live="polite">
+                  {currentImageIndex + 1}/{activeImages.length}
+                </div>
+              )}
 
               {activeImages.length > 1 && (
                 <>

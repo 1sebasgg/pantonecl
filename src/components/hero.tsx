@@ -36,7 +36,6 @@ export function Hero() {
         </p>
       </div>
 
-      {/* Bloque inferior: crece hacia arriba */}
       <div className="absolute inset-x-0 bottom-0 z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
         <div className="text-base leading-relaxed text-primary-foreground/85 max-h-[30dvh] overflow-y-auto overscroll-contain lg:max-h-none lg:overflow-visible">
 

@@ -244,6 +244,29 @@
   margin-inline: auto;
 }
 
+/* Pista deslizante: todas las imágenes montadas (sin lazy) para transición instantánea */
+.et-carousel-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  transform: translate3d(calc(var(--slide-index, 0) * -100% + var(--drag-x, 0px)), 0, 0);
+  transition: transform 0.55s cubic-bezier(0.22, 0.8, 0.22, 1);
+  will-change: transform;
+  touch-action: pan-y;
+}
+
+.et-carousel-track.is-dragging {
+  transition: none;
+}
+
+.et-carousel-slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .et-carousel-blur-bg {
   position: absolute;
   top: -20px;
@@ -261,7 +284,32 @@
   height: 100%;
   object-fit: contain;
   z-index: 1;
-  animation: etFadeIn 0.5s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Contador estilo Instagram */
+.et-counter {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(4px);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .et-carousel-track {
+    transition: none;
+  }
 }
 
 .et-carousel-gradient {
@@ -281,7 +329,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(4px);
   color: var(--ink);
   width: 2.5rem;
@@ -311,6 +359,13 @@
 
 .et-nav-btn.next {
   right: 1rem;
+}
+
+/* En móvil / dispositivos táctiles se navega con swipe: sin flechas */
+@media (max-width: 767px), (hover: none) {
+  .et-nav-btn {
+    display: none;
+  }
 }
 
 /* Puntos */
